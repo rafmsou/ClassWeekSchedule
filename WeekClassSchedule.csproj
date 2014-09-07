@@ -7,8 +7,8 @@
     <ProjectGuid>{B893FC11-FEF6-4A3B-927F-925CBB1E6AF6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WeekSchedule</RootNamespace>
-    <AssemblyName>WeekSchedule</AssemblyName>
+    <RootNamespace>WeekClassSchedule</RootNamespace>
+    <AssemblyName>WeekClassSchedule</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
@@ -67,24 +67,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppData\AttendanceRules.cs">
-      <DependentUpon>WeekSchedule.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>WeekClassSchedule.tt</DependentUpon>
     </Compile>
     <Compile Include="AppData\Classroom.cs">
-      <DependentUpon>WeekSchedule.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>WeekClassSchedule.tt</DependentUpon>
     </Compile>
     <Compile Include="AppData\ClassroomClasses.cs">
-      <DependentUpon>WeekSchedule.tt</DependentUpon>
+      <DependentUpon>WeekClassSchedule.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppData\Professor.cs">
+      <DependentUpon>WeekClassSchedule.tt</DependentUpon>
     </Compile>
     <Compile Include="AppData\vWeeklyScheduleByClass.cs">
-      <DependentUpon>WeekSchedule.tt</DependentUpon>
+      <DependentUpon>WeekClassSchedule.tt</DependentUpon>
     </Compile>
-    <Compile Include="AppData\WeeklyClassSchedule.cs">
-      <DependentUpon>WeekSchedule.tt</DependentUpon>
+    <Compile Include="AppData\WeekClassSchedule.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WeekClassSchedule.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="AppData\WeekSchedule2.cs">
-      <DependentUpon>WeekSchedule.tt</DependentUpon>
+    <Compile Include="AppData\WeekClassSchedule.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WeekClassSchedule.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppData\WeekClassSchedule.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WeekClassSchedule.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="AppData\WeekSchedule.cs">
+      <DependentUpon>WeekClassSchedule.tt</DependentUpon>
     </Compile>
     <Compile Include="FrmApplication.cs">
       <SubType>Form</SubType>
@@ -104,33 +117,11 @@
     <Compile Include="FrmProfessor.Designer.cs">
       <DependentUpon>FrmProfessor.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppData\Professor.cs">
-      <DependentUpon>WeekSchedule.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="AppData\WeekSchedule.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WeekSchedule.Context.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="AppData\WeekSchedule.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WeekSchedule.tt</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="AppData\WeekSchedule.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WeekSchedule.edmx</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="FrmWeekSchedule.cs">
+    <Compile Include="FrmWeekClassSchedule.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmWeekSchedule.Designer.cs">
-      <DependentUpon>FrmWeekSchedule.cs</DependentUpon>
+    <Compile Include="FrmWeekClassSchedule.Designer.cs">
+      <DependentUpon>FrmWeekClassSchedule.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,8 +134,8 @@
     <EmbeddedResource Include="FrmProfessor.resx">
       <DependentUpon>FrmProfessor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmWeekSchedule.resx">
-      <DependentUpon>FrmWeekSchedule.cs</DependentUpon>
+    <EmbeddedResource Include="FrmWeekClassSchedule.resx">
+      <DependentUpon>FrmWeekClassSchedule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -154,7 +145,25 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EntityDeploy Include="AppData\WeekClassSchedule.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WeekClassSchedule.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="AppData\WeekClassSchedule.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WeekClassSchedule.edmx</DependentUpon>
+      <LastGenOutput>WeekClassSchedule.Context.cs</LastGenOutput>
+    </None>
+    <None Include="AppData\WeekClassSchedule.edmx.diagram">
+      <DependentUpon>WeekClassSchedule.edmx</DependentUpon>
+    </None>
+    <None Include="AppData\WeekClassSchedule.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WeekClassSchedule.edmx</DependentUpon>
+      <LastGenOutput>WeekClassSchedule.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\WeekSchedule.AppData.Professor.datasource">
       <SubType>Designer</SubType>
@@ -168,27 +177,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EntityDeploy Include="AppData\WeekSchedule.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>WeekSchedule.Designer.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EntityDeploy>
-    <None Include="AppData\WeekSchedule.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>WeekSchedule.edmx</DependentUpon>
-      <LastGenOutput>WeekSchedule.Context.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="AppData\WeekSchedule.edmx.diagram">
-      <DependentUpon>WeekSchedule.edmx</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="AppData\WeekSchedule.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>WeekSchedule.edmx</DependentUpon>
-      <LastGenOutput>WeekSchedule.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -196,12 +184,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="AppDb\WeekSchedule.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <None Include="AppDb\WeekClassSchedule.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="AppDb\WeekSchedule_log.ldf">
-      <DependentUpon>WeekSchedule.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="AppDb\WeekClassSchedule_log.ldf">
+      <DependentUpon>WeekClassSchedule.mdf</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeekSchedule.Properties {
+namespace WeekClassSchedule.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -26,11 +26,11 @@ namespace WeekSchedule.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\v11.0;AttachDbFilename=|DataDirectory|\\AppDb\\WeekSchedule.m" +
-            "df;Integrated Security=True;Connect Timeout=30")]
-        public string WeekScheduleConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\v11.0;AttachDbFilename=|DataDirectory|\\AppDb\\WeekClassSched" +
+            "ule.mdf;Integrated Security=True;Connect Timeout=30")]
+        public string WeekClassScheduleConnectionString {
             get {
-                return ((string)(this["WeekScheduleConnectionString"]));
+                return ((string)(this["WeekClassScheduleConnectionString"]));
             }
         }
     }

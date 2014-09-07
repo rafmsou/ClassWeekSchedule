@@ -8,24 +8,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WeekSchedule.AppData;
+using WeekClassSchedule.AppData;
 
-namespace WeekSchedule
+namespace WeekClassSchedule
 {
-    public partial class FrmWeekSchedule : Form
+    public partial class FrmWeekClassSchedule : Form
     {
-        private WeekScheduleEntities _entitiesDb;
+        private WeekClassScheduleEntities _entitiesDb;
         private List<Professor> _professorsList;
         private List<vWeeklyScheduleByClass> _weeklyScheduleByClass;
 
 
-        public FrmWeekSchedule()
+        public FrmWeekClassSchedule()
         {
             InitializeComponent();
-            _entitiesDb = new WeekScheduleEntities();
+            _entitiesDb = new WeekClassScheduleEntities();
         }
 
-        private void FrmWeekSchedule_Load(object sender, EventArgs e)
+        private void FrmWeekClassSchedule_Load(object sender, EventArgs e)
         {
             dgProfessors.AutoGenerateColumns = false;
             _professorsList = _entitiesDb.Professor.ToList();
@@ -43,7 +43,11 @@ namespace WeekSchedule
         private void dgProfessors_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var cell = dgProfessors[0, e.RowIndex];
-            MessageBox.Show(cell.Value.ToString());
+            var professorId = Convert.ToInt32(cell.Value);
+
+            var frmProfessor = new FrmProfessor(professorId);
+            frmProfessor.MdiParent = this.MdiParent;
+            frmProfessor.Show();
         }
 
         private void dgSala1_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -64,14 +68,14 @@ namespace WeekSchedule
                 foreach (DataGridViewComboBoxCell cell in dgClassSchedule.Rows[i].Cells.OfType<DataGridViewComboBoxCell>())
                 {
                     weekDay++;
-                    //cell.DataSource = professorsList.Where(p => p.AttendanceRules.Any(rule => rule.Id > 0)).ToList();
-                    cell.DataSource = _professorsList.ToList();
+                    cell.DataSource = _professorsList
+                        .Where(p => p.Id.Equals(0) || p.AttendanceRules.Any(rule => rule.ClassNumber == classNumber && rule.DayOfWeek == weekDay)).ToList();
+                    //cell.DataSource = _professorsList.ToList();
                     cell.DisplayMember = "Name";
                     cell.ValueType = typeof(int);
                     cell.ValueMember = "Id";
                 }
             }
-
         }
 
         private void dgClassSchedule_CellValueChanged(object sender, DataGridViewCellEventArgs e)

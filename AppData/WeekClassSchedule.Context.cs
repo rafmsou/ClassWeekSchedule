@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeekSchedule.AppData
+namespace WeekClassSchedule.AppData
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class WeekScheduleEntities : DbContext
+    public partial class WeekClassScheduleEntities : DbContext
     {
-        public WeekScheduleEntities()
-            : base("name=WeekScheduleEntities")
+        public WeekClassScheduleEntities()
+            : base("name=WeekClassScheduleEntities")
         {
         }
     
@@ -29,8 +29,7 @@ namespace WeekSchedule.AppData
         public DbSet<Classroom> Classroom { get; set; }
         public DbSet<ClassroomClasses> ClassroomClasses { get; set; }
         public DbSet<Professor> Professor { get; set; }
-        public DbSet<WeeklyClassSchedule> WeeklyClassSchedule { get; set; }
-        public DbSet<WeekSchedule2> WeekSchedule { get; set; }
+        public DbSet<WeekSchedule> WeekSchedule { get; set; }
         public DbSet<vWeeklyScheduleByClass> vWeeklyScheduleByClass { get; set; }
     }
 }

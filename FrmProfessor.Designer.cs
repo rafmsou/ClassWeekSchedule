@@ -1,4 +1,4 @@
-﻿namespace WeekSchedule
+﻿namespace WeekClassSchedule
 {
     partial class FrmProfessor
     {
@@ -36,6 +36,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cbAll = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -48,7 +49,8 @@
             this.tercaCheckList = new System.Windows.Forms.CheckedListBox();
             this.segundaCheckList = new System.Windows.Forms.CheckedListBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.cbAll = new System.Windows.Forms.CheckBox();
+            this.lblMessage = new System.Windows.Forms.Label();
+            this.btnExcluir = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,7 +104,7 @@
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(255, 356);
+            this.btnSalvar.Location = new System.Drawing.Point(486, 413);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(103, 39);
             this.btnSalvar.TabIndex = 6;
@@ -135,6 +137,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(545, 296);
             this.panel1.TabIndex = 10;
+            // 
+            // cbAll
+            // 
+            this.cbAll.AutoSize = true;
+            this.cbAll.Location = new System.Drawing.Point(46, 131);
+            this.cbAll.Name = "cbAll";
+            this.cbAll.Size = new System.Drawing.Size(109, 17);
+            this.cbAll.TabIndex = 12;
+            this.cbAll.TabStop = false;
+            this.cbAll.Text = "Selecionar Todos";
+            this.cbAll.UseVisualStyleBackColor = true;
+            this.cbAll.Click += new System.EventHandler(this.cbAll_Click);
             // 
             // label9
             // 
@@ -205,6 +219,7 @@
             this.sextaCheckList.Name = "sextaCheckList";
             this.sextaCheckList.Size = new System.Drawing.Size(85, 94);
             this.sextaCheckList.TabIndex = 4;
+            this.sextaCheckList.TabStop = false;
             this.sextaCheckList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.sextaCheckList_ItemCheck);
             // 
             // quintaCheckList
@@ -222,6 +237,7 @@
             this.quintaCheckList.Name = "quintaCheckList";
             this.quintaCheckList.Size = new System.Drawing.Size(85, 94);
             this.quintaCheckList.TabIndex = 3;
+            this.quintaCheckList.TabStop = false;
             this.quintaCheckList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.quintaCheckList_ItemCheck);
             // 
             // quartaCheckList
@@ -239,6 +255,7 @@
             this.quartaCheckList.Name = "quartaCheckList";
             this.quartaCheckList.Size = new System.Drawing.Size(85, 94);
             this.quartaCheckList.TabIndex = 2;
+            this.quartaCheckList.TabStop = false;
             this.quartaCheckList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.quartaCheckList_ItemCheck);
             // 
             // tercaCheckList
@@ -256,6 +273,7 @@
             this.tercaCheckList.Name = "tercaCheckList";
             this.tercaCheckList.Size = new System.Drawing.Size(85, 94);
             this.tercaCheckList.TabIndex = 1;
+            this.tercaCheckList.TabStop = false;
             this.tercaCheckList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.tercaCheckList_ItemCheck);
             // 
             // segundaCheckList
@@ -273,28 +291,41 @@
             this.segundaCheckList.Name = "segundaCheckList";
             this.segundaCheckList.Size = new System.Drawing.Size(85, 94);
             this.segundaCheckList.TabIndex = 0;
+            this.segundaCheckList.TabStop = false;
             this.segundaCheckList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.segundaCheckList_ItemCheck);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Strikeout))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(272, 31);
+            this.label10.Location = new System.Drawing.Point(261, 31);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(86, 20);
             this.label10.TabIndex = 12;
             this.label10.Text = "Professor";
             // 
-            // cbAll
+            // lblMessage
             // 
-            this.cbAll.AutoSize = true;
-            this.cbAll.Location = new System.Drawing.Point(46, 131);
-            this.cbAll.Name = "cbAll";
-            this.cbAll.Size = new System.Drawing.Size(109, 17);
-            this.cbAll.TabIndex = 12;
-            this.cbAll.Text = "Selecionar Todos";
-            this.cbAll.UseVisualStyleBackColor = true;
-            this.cbAll.Click += new System.EventHandler(this.cbAll_Click);
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.Location = new System.Drawing.Point(213, 363);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(175, 13);
+            this.lblMessage.TabIndex = 13;
+            this.lblMessage.Text = "Professor cadastrado com sucesso.";
+            this.lblMessage.Visible = false;
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnExcluir.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnExcluir.Location = new System.Drawing.Point(377, 413);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(103, 39);
+            this.btnExcluir.TabIndex = 14;
+            this.btnExcluir.TabStop = false;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.UseVisualStyleBackColor = false;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // FrmProfessor
             // 
@@ -303,6 +334,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(601, 464);
+            this.Controls.Add(this.btnExcluir);
+            this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.txtWeekClassesQty);
@@ -312,6 +345,7 @@
             this.ShowInTaskbar = false;
             this.Text = "FrmProfessor";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmProfessor_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -342,5 +376,7 @@
         private System.Windows.Forms.CheckedListBox segundaCheckList;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckBox cbAll;
+        private System.Windows.Forms.Label lblMessage;
+        private System.Windows.Forms.Button btnExcluir;
     }
 }

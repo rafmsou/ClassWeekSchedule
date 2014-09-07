@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeekSchedule", "WeekSchedule.csproj", "{B893FC11-FEF6-4A3B-927F-925CBB1E6AF6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeekClassSchedule", "WeekClassSchedule.csproj", "{B893FC11-FEF6-4A3B-927F-925CBB1E6AF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

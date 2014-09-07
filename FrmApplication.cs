@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WeekSchedule
+namespace WeekClassSchedule
 {
     public partial class FrmApplication : Form
     {
@@ -33,9 +33,9 @@ namespace WeekSchedule
 
         private void agendaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var frmWeekSchedule = new FrmWeekSchedule();
-            frmWeekSchedule.MdiParent = this;
-            frmWeekSchedule.Show();
+            var frmWeekClassSchedule = new FrmWeekClassSchedule();
+            frmWeekClassSchedule.MdiParent = this;
+            frmWeekClassSchedule.Show();
 
         }
     }

@@ -1,4 +1,4 @@
-﻿namespace WeekSchedule
+﻿namespace WeekClassSchedule
 {
     partial class FrmApplication
     {

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeekSchedule.AppData
+namespace WeekClassSchedule.AppData
 {
     using System;
     using System.Collections.Generic;
