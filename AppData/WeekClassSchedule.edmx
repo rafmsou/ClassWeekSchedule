@@ -64,6 +64,7 @@
         </EntityType>
         <EntityType Name="WeekSchedule">
           <Key>
+            <PropertyRef Name="ClassroomId" />
             <PropertyRef Name="ClassNumber" />
             <PropertyRef Name="WeekDay" />
             <PropertyRef Name="ProfessorId" />
@@ -159,6 +160,7 @@
             <PropertyRef Name="ClassNumber" />
             <PropertyRef Name="WeekDay" />
             <PropertyRef Name="ProfessorId" />
+            <PropertyRef Name="ClassroomId" />
           </Key>
           <Property Name="ClassroomId" Type="Int16" Nullable="false" />
           <Property Name="ClassNumber" Type="Int16" Nullable="false" />

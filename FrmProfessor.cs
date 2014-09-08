@@ -60,31 +60,47 @@ namespace WeekClassSchedule
         private void segundaCheckList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             var entry = new KeyValuePair<DayOfWeek, int>(DayOfWeek.Monday, e.Index + 1);
-            WeekAttendanceDict.Add(entry);
+            if (!segundaCheckList.GetItemChecked(e.Index))
+                WeekAttendanceDict.Add(entry);
+            else
+                WeekAttendanceDict.Remove(entry);
         }
 
         private void tercaCheckList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             var entry = new KeyValuePair<DayOfWeek, int>(DayOfWeek.Tuesday, e.Index + 1);
-            WeekAttendanceDict.Add(entry);
+            if (!tercaCheckList.GetItemChecked(e.Index))
+                WeekAttendanceDict.Add(entry);
+            else
+                WeekAttendanceDict.Remove(entry);
         }
 
         private void quartaCheckList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             var entry = new KeyValuePair<DayOfWeek, int>(DayOfWeek.Wednesday, e.Index + 1);
-            WeekAttendanceDict.Add(entry);
+            if (!quartaCheckList.GetItemChecked(e.Index))
+                WeekAttendanceDict.Add(entry);
+            else
+                WeekAttendanceDict.Remove(entry);
+
         }
 
         private void quintaCheckList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             var entry = new KeyValuePair<DayOfWeek, int>(DayOfWeek.Thursday, e.Index + 1);
-            WeekAttendanceDict.Add(entry);
+            if (!quintaCheckList.GetItemChecked(e.Index))
+                WeekAttendanceDict.Add(entry);
+            else
+                WeekAttendanceDict.Remove(entry);
         }
 
         private void sextaCheckList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             var entry = new KeyValuePair<DayOfWeek, int>(DayOfWeek.Friday, e.Index + 1);
-            WeekAttendanceDict.Add(entry);
+            if (!sextaCheckList.GetItemChecked(e.Index))
+                WeekAttendanceDict.Add(entry);
+            else 
+                WeekAttendanceDict.Remove(entry);
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)

@@ -69,7 +69,7 @@ namespace WeekClassSchedule
                         ClassroomClasses classes;
                         lblGeneratingSchedule.Text = lblGeneratingSchedule.Text.Replace("{class}", classroom.Name);
 
-                        for (short i = 1; i < classroom.NumberOfClasses; i++)
+                        for (short i = 1; i <= classroom.NumberOfClasses; i++)
                         {
                             classes = new ClassroomClasses();
                             classes.ClassromId = classroom.Id;
