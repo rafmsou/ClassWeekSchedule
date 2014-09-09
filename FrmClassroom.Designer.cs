@@ -71,7 +71,7 @@
             this.txtName.Location = new System.Drawing.Point(66, 50);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(137, 20);
-            this.txtName.TabIndex = 2;
+            this.txtName.TabIndex = 1;
             // 
             // btnSave
             // 
@@ -114,7 +114,7 @@
             this.txtClassNum.Location = new System.Drawing.Point(66, 94);
             this.txtClassNum.Name = "txtClassNum";
             this.txtClassNum.Size = new System.Drawing.Size(137, 20);
-            this.txtClassNum.TabIndex = 6;
+            this.txtClassNum.TabIndex = 2;
             // 
             // lstClassrooms
             // 

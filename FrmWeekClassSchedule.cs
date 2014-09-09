@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Text;
+using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeekClassSchedule.AppData;
@@ -17,6 +14,7 @@ namespace WeekClassSchedule
         private WeekClassScheduleEntities _entitiesDb;
         private List<Professor> _professorsList;
         private List<vWeeklyScheduleByClass> _weeklyScheduleByClass;
+        private List<WeekSchedule> _weekScheduleList;
 
 
         public FrmWeekClassSchedule()
@@ -45,9 +43,12 @@ namespace WeekClassSchedule
             var cell = dgProfessors[0, e.RowIndex];
             var professorId = Convert.ToInt32(cell.Value);
 
-            var frmProfessor = new FrmProfessor(professorId);
-            frmProfessor.MdiParent = this.MdiParent;
-            frmProfessor.Show();
+            if (professorId > 0)
+            {
+                var frmProfessor = new FrmProfessor(professorId);
+                frmProfessor.MdiParent = this.MdiParent;
+                frmProfessor.Show();
+            }
         }
 
         private void dgSala1_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -84,7 +85,8 @@ namespace WeekClassSchedule
             {
                 var value = (int)dgClassSchedule[e.ColumnIndex, e.RowIndex].Value;
                 var professor = _professorsList.Where(p => p.Id == value).FirstOrDefault();
-                professor.NumberOfRemainingClasses--;
+                //professor.NumberOfRemainingClasses = _weeklyScheduleByClass.Count(ws =;
+                dgProfessors.Refresh();
             }
         }
 

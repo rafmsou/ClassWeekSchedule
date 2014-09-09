@@ -178,6 +178,7 @@ namespace WeekClassSchedule
 
         private void FrmProfessor_Load(object sender, EventArgs e)
         {
+            this.txtName.Select();
             this.txtName.Focus();
         }
     }
