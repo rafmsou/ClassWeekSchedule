@@ -36,6 +36,9 @@ namespace WeekClassSchedule
                 _professorsList.Add(new Professor() { Id = 0, Name = "Vaga" });
 
             lstClassrooms.DataSource = _entitiesDb.Classroom.ToList();
+
+            this.Height = this.MdiParent.Height;
+            this.Width = this.MdiParent.Width;
         }
 
         private void dgProfessors_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -95,6 +98,35 @@ namespace WeekClassSchedule
             lblLoadingSchedule.Visible = true;
             dgClassSchedule.DataSource = _weeklyScheduleByClass.Where(ws => ws.Classe == Convert.ToInt32(lstClassrooms.SelectedValue)).ToList();
             lblLoadingSchedule.Visible = false;
+        }
+
+        private async void btnSaveSchedule_Click(object sender, EventArgs e)
+        {
+            var dataSource = (List<vWeeklyScheduleByClass>)dgClassSchedule.DataSource;
+            var classroomId = dataSource.First().Classe;
+            this._weekScheduleList = _entitiesDb.WeekSchedule.Where(ws => ws.ClassroomId == classroomId).ToList();
+
+            foreach (var item in dataSource)
+            {
+                var mondaySchedule = _weekScheduleList.Where(w => w.ClassNumber == item.Aula && w.WeekDay == (int)DayOfWeek.Monday).Single();
+                mondaySchedule.ProfessorId = item.Segunda.Value;
+
+                var tuesdaySchedule = _weekScheduleList.Where(w => w.ClassNumber == item.Aula && w.WeekDay == (int)DayOfWeek.Tuesday).Single();
+                tuesdaySchedule.ProfessorId = item.Terça.Value;
+
+                var wednesdaySchedule = _weekScheduleList.Where(w => w.ClassNumber == item.Aula && w.WeekDay == (int)DayOfWeek.Wednesday).Single();
+                wednesdaySchedule.ProfessorId = item.Quarta.Value;
+
+                var thursdaySchedule = _weekScheduleList.Where(w => w.ClassNumber == item.Aula && w.WeekDay == (int)DayOfWeek.Thursday).Single();
+                thursdaySchedule.ProfessorId = item.Quinta.Value;
+
+                var fridaySchedule = _weekScheduleList.Where(w => w.ClassNumber == item.Aula && w.WeekDay == (int)DayOfWeek.Friday).Single();
+                fridaySchedule.ProfessorId = item.Sexta.Value;
+
+                this._entitiesDb.Entry <vWeeklyScheduleByClass>(item).State = EntityState.Unchanged;
+            }
+
+            await this._entitiesDb.SaveChangesAsync();
         }
     }
 }

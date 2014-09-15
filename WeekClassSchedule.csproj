@@ -188,11 +188,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AppDb\WeekClassSchedule.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="AppDb\WeekClassSchedule_log.ldf">
       <DependentUpon>WeekClassSchedule.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

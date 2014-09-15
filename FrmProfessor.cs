@@ -180,6 +180,17 @@ namespace WeekClassSchedule
         {
             this.txtName.Select();
             this.txtName.Focus();
+
+            this.Height = this.MdiParent.Height;
+            this.Width = this.MdiParent.Width;
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            var newForm = new FrmProfessor();
+            newForm.MdiParent = this.MdiParent;
+            this.Close();
+            newForm.Show();
         }
     }
 }

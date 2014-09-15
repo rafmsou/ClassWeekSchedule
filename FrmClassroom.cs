@@ -33,11 +33,13 @@ namespace WeekClassSchedule
             try
             {
                 _entitiesDb.SaveChanges();
-
-                lstClassrooms.Items.Add(c.Name);
                 _classroomList.Add(c);
+                dgClassrooms.DataSource = null;
+                dgClassrooms.DataSource = _classroomList;
+
                 txtName.Text = string.Empty;
                 txtClassNum.Text = string.Empty;
+                txtName.Focus();
             }
             catch (Exception ex)
             {
@@ -48,10 +50,11 @@ namespace WeekClassSchedule
         private void FrmClassroom_Load(object sender, EventArgs e)
         {
             _classroomList = _entitiesDb.Classroom.OrderBy(i => i.Name).ToList();
-            foreach (var item in _classroomList)
-            {
-                lstClassrooms.Items.Add(item.Name);
-            }
+            dgClassrooms.AutoGenerateColumns = false;
+            dgClassrooms.DataSource = _classroomList;
+
+            this.Height = this.MdiParent.Height;
+            this.Width = this.MdiParent.Width;
         }
 
         private void btnGenerateSchedule_Click(object sender, EventArgs e)
@@ -59,39 +62,45 @@ namespace WeekClassSchedule
             lblGeneratingSchedule.Visible = true;
             lblDone.Visible = false;
 
-            foreach (ListViewItem item in lstClassrooms.Items)
+            MessageBox.Show(dgClassrooms.SelectedRows.Count.ToString());
+
+            for (int i = 0; i < dgClassrooms.SelectedRows.Count; i++)
             {
-                if (item.Selected)
-                {
-                    var classroom = _classroomList.Where(c => c.Name.Equals(item.Text)).FirstOrDefault();
-                    if (classroom != null)
-                    {
-                        ClassroomClasses classes;
-                        lblGeneratingSchedule.Text = lblGeneratingSchedule.Text.Replace("{class}", classroom.Name);
-
-                        for (short i = 1; i <= classroom.NumberOfClasses; i++)
-                        {
-                            classes = new ClassroomClasses();
-                            classes.ClassromId = classroom.Id;
-                            classes.ClassNumber = i;
-                            _entitiesDb.ClassroomClasses.Add(classes);
-
-                            WeekSchedule weekSchedule;
-                            for (short w = (short)DayOfWeek.Monday; w <= (short)DayOfWeek.Friday; w++)
-                            {
-                                weekSchedule = new WeekSchedule();
-                                weekSchedule.ClassroomId = (short)classroom.Id;
-                                weekSchedule.ClassNumber = i;
-                                weekSchedule.ProfessorId = 0;
-                                weekSchedule.WeekDay = w;
-
-                                _entitiesDb.WeekSchedule.Add(weekSchedule);
-                            }
-                        }
-                        _entitiesDb.SaveChanges();
-                    }
-                }
+                
             }
+            //foreach (ListViewItem item in lstClassrooms.Items)
+            //{
+            //    if (item.Selected)
+            //    {
+            //        var classroom = _classroomList.Where(c => c.Name.Equals(item.Text)).FirstOrDefault();
+            //        if (classroom != null)
+            //        {
+            //            ClassroomClasses classes;
+            //            lblGeneratingSchedule.Text = lblGeneratingSchedule.Text.Replace("{class}", classroom.Name);
+
+            //            for (short i = 1; i <= classroom.NumberOfClasses; i++)
+            //            {
+            //                classes = new ClassroomClasses();
+            //                classes.ClassromId = classroom.Id;
+            //                classes.ClassNumber = i;
+            //                _entitiesDb.ClassroomClasses.Add(classes);
+
+            //                WeekSchedule weekSchedule;
+            //                for (short w = (short)DayOfWeek.Monday; w <= (short)DayOfWeek.Friday; w++)
+            //                {
+            //                    weekSchedule = new WeekSchedule();
+            //                    weekSchedule.ClassroomId = (short)classroom.Id;
+            //                    weekSchedule.ClassNumber = i;
+            //                    weekSchedule.ProfessorId = 0;
+            //                    weekSchedule.WeekDay = w;
+
+            //                    _entitiesDb.WeekSchedule.Add(weekSchedule);
+            //                }
+            //            }
+            //            _entitiesDb.SaveChanges();
+            //        }
+            //    }
+            //}
 
             lblGeneratingSchedule.Visible = false;
             lblDone.Visible = true;

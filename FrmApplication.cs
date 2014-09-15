@@ -38,5 +38,10 @@ namespace WeekClassSchedule
             frmWeekClassSchedule.Show();
 
         }
+
+        private void fecharToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
