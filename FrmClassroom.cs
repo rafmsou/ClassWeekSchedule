@@ -62,45 +62,11 @@ namespace WeekClassSchedule
             lblGeneratingSchedule.Visible = true;
             lblDone.Visible = false;
 
-            MessageBox.Show(dgClassrooms.SelectedRows.Count.ToString());
-
             for (int i = 0; i < dgClassrooms.SelectedRows.Count; i++)
             {
-                
+                var classroomName = dgClassrooms.SelectedRows[i].Cells[0].Value.ToString();
+                lblGeneratingSchedule.Text = lblGeneratingSchedule.Text.Replace("{class}", classroomName);
             }
-            //foreach (ListViewItem item in lstClassrooms.Items)
-            //{
-            //    if (item.Selected)
-            //    {
-            //        var classroom = _classroomList.Where(c => c.Name.Equals(item.Text)).FirstOrDefault();
-            //        if (classroom != null)
-            //        {
-            //            ClassroomClasses classes;
-            //            lblGeneratingSchedule.Text = lblGeneratingSchedule.Text.Replace("{class}", classroom.Name);
-
-            //            for (short i = 1; i <= classroom.NumberOfClasses; i++)
-            //            {
-            //                classes = new ClassroomClasses();
-            //                classes.ClassromId = classroom.Id;
-            //                classes.ClassNumber = i;
-            //                _entitiesDb.ClassroomClasses.Add(classes);
-
-            //                WeekSchedule weekSchedule;
-            //                for (short w = (short)DayOfWeek.Monday; w <= (short)DayOfWeek.Friday; w++)
-            //                {
-            //                    weekSchedule = new WeekSchedule();
-            //                    weekSchedule.ClassroomId = (short)classroom.Id;
-            //                    weekSchedule.ClassNumber = i;
-            //                    weekSchedule.ProfessorId = 0;
-            //                    weekSchedule.WeekDay = w;
-
-            //                    _entitiesDb.WeekSchedule.Add(weekSchedule);
-            //                }
-            //            }
-            //            _entitiesDb.SaveChanges();
-            //        }
-            //    }
-            //}
 
             lblGeneratingSchedule.Visible = false;
             lblDone.Visible = true;

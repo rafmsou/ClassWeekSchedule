@@ -69,6 +69,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppDatalayer\ProfessorDatalayer.cs" />
+    <Compile Include="AppDatalayer\ScheduleDatalayer.cs" />
     <Compile Include="AppData\AttendanceRules.cs">
       <DependentUpon>WeekClassSchedule.tt</DependentUpon>
     </Compile>
@@ -126,6 +128,7 @@
     <Compile Include="FrmWeekClassSchedule.Designer.cs">
       <DependentUpon>FrmWeekClassSchedule.cs</DependentUpon>
     </Compile>
+    <Compile Include="AppDatalayer\ClassroomDatalayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmApplication.resx">

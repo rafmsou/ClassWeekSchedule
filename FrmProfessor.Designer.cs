@@ -77,7 +77,7 @@
             // 
             this.txtWeekClassesQty.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtWeekClassesQty.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWeekClassesQty.Location = new System.Drawing.Point(254, 155);
+            this.txtWeekClassesQty.Location = new System.Drawing.Point(306, 217);
             this.txtWeekClassesQty.Name = "txtWeekClassesQty";
             this.txtWeekClassesQty.Size = new System.Drawing.Size(138, 18);
             this.txtWeekClassesQty.TabIndex = 2;
@@ -105,7 +105,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(117, 88);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 13);
+            this.label3.Size = new System.Drawing.Size(100, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Quantidade Aulas";
             // 
@@ -113,7 +113,7 @@
             // 
             this.btnSalvar.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnSalvar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvar.Location = new System.Drawing.Point(486, 428);
+            this.btnSalvar.Location = new System.Drawing.Point(538, 490);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(103, 39);
             this.btnSalvar.TabIndex = 6;
@@ -143,7 +143,7 @@
             this.panel1.Controls.Add(this.tercaCheckList);
             this.panel1.Controls.Add(this.segundaCheckList);
             this.panel1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(22, 69);
+            this.panel1.Location = new System.Drawing.Point(74, 131);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(545, 296);
             this.panel1.TabIndex = 10;
@@ -183,7 +183,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(331, 158);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(42, 13);
+            this.label7.Size = new System.Drawing.Size(43, 13);
             this.label7.TabIndex = 9;
             this.label7.Text = "Quinta";
             // 
@@ -192,7 +192,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(240, 158);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 13);
+            this.label6.Size = new System.Drawing.Size(43, 13);
             this.label6.TabIndex = 8;
             this.label6.Text = "Quarta";
             // 
@@ -227,8 +227,8 @@
             "6ª Aula"});
             this.sextaCheckList.Location = new System.Drawing.Point(408, 174);
             this.sextaCheckList.Name = "sextaCheckList";
-            this.sextaCheckList.Size = new System.Drawing.Size(85, 94);
-            this.sextaCheckList.TabIndex = 4;
+            this.sextaCheckList.Size = new System.Drawing.Size(85, 106);
+            this.sextaCheckList.TabIndex = 16;
             this.sextaCheckList.TabStop = false;
             this.sextaCheckList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.sextaCheckList_ItemCheck);
             // 
@@ -245,8 +245,8 @@
             "6ª Aula"});
             this.quintaCheckList.Location = new System.Drawing.Point(317, 174);
             this.quintaCheckList.Name = "quintaCheckList";
-            this.quintaCheckList.Size = new System.Drawing.Size(85, 94);
-            this.quintaCheckList.TabIndex = 3;
+            this.quintaCheckList.Size = new System.Drawing.Size(85, 106);
+            this.quintaCheckList.TabIndex = 14;
             this.quintaCheckList.TabStop = false;
             this.quintaCheckList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.quintaCheckList_ItemCheck);
             // 
@@ -263,7 +263,7 @@
             "6ª Aula"});
             this.quartaCheckList.Location = new System.Drawing.Point(226, 174);
             this.quartaCheckList.Name = "quartaCheckList";
-            this.quartaCheckList.Size = new System.Drawing.Size(85, 94);
+            this.quartaCheckList.Size = new System.Drawing.Size(85, 106);
             this.quartaCheckList.TabIndex = 15;
             this.quartaCheckList.TabStop = false;
             this.quartaCheckList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.quartaCheckList_ItemCheck);
@@ -281,7 +281,7 @@
             "6ª Aula"});
             this.tercaCheckList.Location = new System.Drawing.Point(137, 174);
             this.tercaCheckList.Name = "tercaCheckList";
-            this.tercaCheckList.Size = new System.Drawing.Size(85, 94);
+            this.tercaCheckList.Size = new System.Drawing.Size(85, 106);
             this.tercaCheckList.TabIndex = 13;
             this.tercaCheckList.TabStop = false;
             this.tercaCheckList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.tercaCheckList_ItemCheck);
@@ -299,7 +299,7 @@
             "6ª Aula"});
             this.segundaCheckList.Location = new System.Drawing.Point(46, 174);
             this.segundaCheckList.Name = "segundaCheckList";
-            this.segundaCheckList.Size = new System.Drawing.Size(85, 94);
+            this.segundaCheckList.Size = new System.Drawing.Size(85, 106);
             this.segundaCheckList.TabIndex = 12;
             this.segundaCheckList.TabStop = false;
             this.segundaCheckList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.segundaCheckList_ItemCheck);
@@ -308,7 +308,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(260, 49);
+            this.label10.Location = new System.Drawing.Point(312, 111);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(81, 21);
             this.label10.TabIndex = 12;
@@ -318,7 +318,7 @@
             // 
             this.lblMessage.AutoSize = true;
             this.lblMessage.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage.Location = new System.Drawing.Point(180, 378);
+            this.lblMessage.Location = new System.Drawing.Point(232, 440);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(246, 13);
             this.lblMessage.TabIndex = 13;
@@ -330,7 +330,7 @@
             this.btnExcluir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnExcluir.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExcluir.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnExcluir.Location = new System.Drawing.Point(377, 428);
+            this.btnExcluir.Location = new System.Drawing.Point(429, 490);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(103, 39);
             this.btnExcluir.TabIndex = 14;
@@ -343,7 +343,7 @@
             // 
             this.btnNew.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnNew.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNew.Location = new System.Drawing.Point(12, 428);
+            this.btnNew.Location = new System.Drawing.Point(64, 490);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(103, 39);
             this.btnNew.TabIndex = 15;
@@ -357,7 +357,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(601, 514);
+            this.ClientSize = new System.Drawing.Size(714, 623);
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.lblMessage);

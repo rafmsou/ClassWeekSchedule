@@ -108,39 +108,41 @@ namespace WeekClassSchedule
             lblMessage.Visible = false;
 
             Professor professor;
-            if (_professorId == 0)
-                professor = new Professor();
-            else
-                professor = entitiesDb.Professor.Where(p => p.Id == _professorId).First();
-            
-            // fills professor data
-            professor.Name = txtName.Text;
-            professor.Subject = txtSubject.Text;
-            professor.NumberOfClassesWeek = Convert.ToInt32(txtWeekClassesQty.Text);
-
-            foreach(var rule in professor.AttendanceRules.ToList())
-            {
-                entitiesDb.AttendanceRules.Remove(rule);
-            }
-
-            // fills attendance rules data
-            foreach (var item in WeekAttendanceDict)
-            {
-                var attendanceRule = new AttendanceRules();
-                attendanceRule.DayOfWeek = (int)item.Key;
-                attendanceRule.ClassNumber = item.Value;
-                attendanceRule.Professor = professor;
-
-                professor.AttendanceRules.Add(attendanceRule);
-            }
-
-            if(_professorId == 0)
-                entitiesDb.Professor.Add(professor);
 
             try
             {
-                entitiesDb.SaveChanges();
-                lblMessage.Visible = true;
+                if (_professorId == 0)
+                    professor = new Professor();
+                else
+                    professor = entitiesDb.Professor.Where(p => p.Id == _professorId).First();
+            
+                // fills professor data
+                professor.Name = txtName.Text;
+                professor.Subject = txtSubject.Text;
+                professor.NumberOfClassesWeek = Convert.ToInt32(txtWeekClassesQty.Text);
+
+                foreach(var rule in professor.AttendanceRules.ToList())
+                {
+                    entitiesDb.AttendanceRules.Remove(rule);
+                }
+
+                // fills attendance rules data
+                foreach (var item in WeekAttendanceDict)
+                {
+                    var attendanceRule = new AttendanceRules();
+                    attendanceRule.DayOfWeek = (int)item.Key;
+                    attendanceRule.ClassNumber = item.Value;
+                    attendanceRule.Professor = professor;
+
+                    professor.AttendanceRules.Add(attendanceRule);
+                }
+
+                if(_professorId == 0)
+                    entitiesDb.Professor.Add(professor);
+
+           
+                    entitiesDb.SaveChanges();
+                    lblMessage.Visible = true;
             }
             catch (Exception ex)
             {
