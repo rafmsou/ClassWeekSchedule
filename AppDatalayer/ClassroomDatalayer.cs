@@ -22,7 +22,7 @@ namespace WeekClassSchedule.Helpers
         public List<Classroom> GetClassroomList()
         {
             if (_classroomList == null)
-                _classroomList = this.GetClassroomListAsync().Result;
+                _classroomList = _entitiesDb.Classroom.ToList();
 
             return _classroomList;
         }
@@ -32,7 +32,7 @@ namespace WeekClassSchedule.Helpers
             return await _entitiesDb.Classroom.OrderBy(i => i.Name).ToListAsync();
         }
 
-        public void SaveClassroom(Classroom classroomToSave)
+        public void Save(Classroom classroomToSave)
         {
             _entitiesDb.Classroom.Add(classroomToSave);
             _entitiesDb.SaveChanges();

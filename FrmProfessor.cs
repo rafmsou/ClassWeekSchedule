@@ -8,29 +8,30 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeekClassSchedule.AppData;
+using WeekClassSchedule.AppDatalayer;
 
 namespace WeekClassSchedule
 {
     public partial class FrmProfessor : Form
     {
         private List<KeyValuePair<DayOfWeek, int>> WeekAttendanceDict;
-        private WeekClassScheduleEntities entitiesDb;
+        private ProfessorDatalayer _professorDatalayer;
         private int _professorId = 0;
 
         public FrmProfessor()
         {
             InitializeComponent();
             WeekAttendanceDict = new List<KeyValuePair<DayOfWeek, int>>();
-            entitiesDb = new WeekClassScheduleEntities();
+            _professorDatalayer = new ProfessorDatalayer();
         }
 
         public FrmProfessor(int professorId)
         {
             InitializeComponent();
             WeekAttendanceDict = new List<KeyValuePair<DayOfWeek, int>>();
-            entitiesDb = new WeekClassScheduleEntities();
+            _professorDatalayer = new ProfessorDatalayer();
 
-            var professor = entitiesDb.Professor.Where(p => p.Id == professorId).First();
+            var professor = _professorDatalayer.GetById(professorId);
             _professorId = professor.Id;
 
             this.txtName.Text = professor.Name;
@@ -106,6 +107,7 @@ namespace WeekClassSchedule
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             lblMessage.Visible = false;
+            lblWait.Visible = true;
 
             Professor professor;
 
@@ -114,16 +116,17 @@ namespace WeekClassSchedule
                 if (_professorId == 0)
                     professor = new Professor();
                 else
-                    professor = entitiesDb.Professor.Where(p => p.Id == _professorId).First();
+                    professor = _professorDatalayer.GetById(_professorId);
             
                 // fills professor data
                 professor.Name = txtName.Text;
                 professor.Subject = txtSubject.Text;
                 professor.NumberOfClassesWeek = Convert.ToInt32(txtWeekClassesQty.Text);
+                professor.NumberOfRemainingClasses = professor.NumberOfClassesWeek;
 
                 foreach(var rule in professor.AttendanceRules.ToList())
                 {
-                    entitiesDb.AttendanceRules.Remove(rule);
+                    professor.AttendanceRules.Remove(rule);
                 }
 
                 // fills attendance rules data
@@ -137,12 +140,10 @@ namespace WeekClassSchedule
                     professor.AttendanceRules.Add(attendanceRule);
                 }
 
-                if(_professorId == 0)
-                    entitiesDb.Professor.Add(professor);
+                _professorDatalayer.SaveOrUpdate(professor);
 
-           
-                    entitiesDb.SaveChanges();
-                    lblMessage.Visible = true;
+                lblWait.Visible = false;
+                lblMessage.Visible = true;
             }
             catch (Exception ex)
             {
@@ -172,9 +173,7 @@ namespace WeekClassSchedule
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            var professor = entitiesDb.Professor.Where(p => p.Id == _professorId).First();
-            entitiesDb.Professor.Remove(professor);
-            entitiesDb.SaveChanges();
+            _professorDatalayer.Remove(_professorId);
             this.Close();
         }
 

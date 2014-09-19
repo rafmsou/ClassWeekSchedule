@@ -52,6 +52,7 @@
             this.lblMessage = new System.Windows.Forms.Label();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
+            this.lblWait = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -347,9 +348,22 @@
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(103, 39);
             this.btnNew.TabIndex = 15;
+            this.btnNew.TabStop = false;
             this.btnNew.Text = "Novo";
             this.btnNew.UseVisualStyleBackColor = false;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
+            // lblWait
+            // 
+            this.lblWait.AutoSize = true;
+            this.lblWait.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWait.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblWait.Location = new System.Drawing.Point(298, 455);
+            this.lblWait.Name = "lblWait";
+            this.lblWait.Size = new System.Drawing.Size(61, 13);
+            this.lblWait.TabIndex = 16;
+            this.lblWait.Text = "Aguarde...";
+            this.lblWait.Visible = false;
             // 
             // FrmProfessor
             // 
@@ -358,6 +372,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(714, 623);
+            this.Controls.Add(this.lblWait);
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.lblMessage);
@@ -405,5 +420,6 @@
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnNew;
+        private System.Windows.Forms.Label lblWait;
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WeekClassSchedule.AppDatalayer
 {
-    class ScheduleDatalayer
+    public class ScheduleDatalayer
     {
     }
 }
