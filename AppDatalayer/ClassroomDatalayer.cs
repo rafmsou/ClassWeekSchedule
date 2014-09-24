@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using WeekClassSchedule.AppData;
 
-namespace WeekClassSchedule.Helpers
+namespace WeekClassSchedule.AppDatalayer
 {
     public class ClassroomDatalayer
     {
@@ -19,12 +19,18 @@ namespace WeekClassSchedule.Helpers
            _entitiesDb = new WeekClassScheduleEntities();
         }
 
-        public List<Classroom> GetClassroomList()
+        public List<Classroom> ClassroomList
         {
-            if (_classroomList == null)
-                _classroomList = _entitiesDb.Classroom.ToList();
+            get {
+                if (_classroomList == null)
+                    _classroomList = _entitiesDb.Classroom.ToList();
 
-            return _classroomList;
+                return _classroomList;
+            }
+
+            set {
+                this._classroomList = value;
+            }
         }
 
         public async Task<List<Classroom>> GetClassroomListAsync()

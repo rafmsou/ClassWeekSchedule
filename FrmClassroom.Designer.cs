@@ -28,15 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgClassrooms = new System.Windows.Forms.DataGridView();
+            this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumberOfClassesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.txtClassNum = new System.Windows.Forms.TextBox();
             this.btnGenerateSchedule = new System.Windows.Forms.Button();
@@ -44,11 +46,11 @@
             this.lblDone = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NumberOfClassesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.loading = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgClassrooms)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loading)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -95,6 +97,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.panel1.Controls.Add(this.loading);
             this.panel1.Controls.Add(this.dgClassrooms);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.txtClassNum);
@@ -112,14 +115,14 @@
             this.dgClassrooms.AllowUserToAddRows = false;
             this.dgClassrooms.AllowUserToDeleteRows = false;
             this.dgClassrooms.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgClassrooms.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgClassrooms.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgClassrooms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgClassrooms.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NameColumn,
@@ -129,18 +132,36 @@
             this.dgClassrooms.Margin = new System.Windows.Forms.Padding(0);
             this.dgClassrooms.Name = "dgClassrooms";
             this.dgClassrooms.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgClassrooms.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgClassrooms.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgClassrooms.RowHeadersWidth = 25;
             this.dgClassrooms.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgClassrooms.Size = new System.Drawing.Size(266, 221);
             this.dgClassrooms.TabIndex = 6;
+            this.dgClassrooms.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgClassrooms_KeyDown);
+            // 
+            // NameColumn
+            // 
+            this.NameColumn.DataPropertyName = "Name";
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NameColumn.DefaultCellStyle = dataGridViewCellStyle11;
+            this.NameColumn.HeaderText = "Nome";
+            this.NameColumn.Name = "NameColumn";
+            this.NameColumn.ReadOnly = true;
+            this.NameColumn.Width = 120;
+            // 
+            // NumberOfClassesColumn
+            // 
+            this.NumberOfClassesColumn.DataPropertyName = "NumberOfClasses";
+            this.NumberOfClassesColumn.HeaderText = "Aulas";
+            this.NumberOfClassesColumn.Name = "NumberOfClassesColumn";
+            this.NumberOfClassesColumn.ReadOnly = true;
             // 
             // label3
             // 
@@ -220,22 +241,16 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Programação";
             // 
-            // NameColumn
+            // loading
             // 
-            this.NameColumn.DataPropertyName = "Name";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.NameColumn.HeaderText = "Nome";
-            this.NameColumn.Name = "NameColumn";
-            this.NameColumn.ReadOnly = true;
-            this.NameColumn.Width = 120;
-            // 
-            // NumberOfClassesColumn
-            // 
-            this.NumberOfClassesColumn.DataPropertyName = "NumberOfClasses";
-            this.NumberOfClassesColumn.HeaderText = "Aulas";
-            this.NumberOfClassesColumn.Name = "NumberOfClassesColumn";
-            this.NumberOfClassesColumn.ReadOnly = true;
+            this.loading.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.loading.Image = global::WeekClassSchedule.Properties.Resources.ajax_loader;
+            this.loading.Location = new System.Drawing.Point(102, 261);
+            this.loading.Name = "loading";
+            this.loading.Size = new System.Drawing.Size(68, 70);
+            this.loading.TabIndex = 8;
+            this.loading.TabStop = false;
+            this.loading.Visible = false;
             // 
             // FrmClassroom
             // 
@@ -256,6 +271,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgClassrooms)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loading)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -277,5 +293,6 @@
         private System.Windows.Forms.DataGridView dgClassrooms;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumberOfClassesColumn;
+        private System.Windows.Forms.PictureBox loading;
     }
 }

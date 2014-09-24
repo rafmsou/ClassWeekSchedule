@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgClassSchedule = new System.Windows.Forms.DataGridView();
             this.Aula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Segunda = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -58,6 +60,14 @@
             this.dgClassSchedule.AllowUserToAddRows = false;
             this.dgClassSchedule.AllowUserToDeleteRows = false;
             this.dgClassSchedule.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgClassSchedule.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgClassSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgClassSchedule.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Aula,
@@ -72,7 +82,6 @@
             this.dgClassSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgClassSchedule.Size = new System.Drawing.Size(594, 286);
             this.dgClassSchedule.TabIndex = 0;
-            this.dgClassSchedule.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgClassSchedule_CellClick);
             this.dgClassSchedule.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgClassSchedule_CellValueChanged);
             this.dgClassSchedule.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgClassSchedule_DataBindingComplete);
             this.dgClassSchedule.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgSala1_DataError);
@@ -133,6 +142,14 @@
             this.dgProfessors.AllowUserToAddRows = false;
             this.dgProfessors.AllowUserToDeleteRows = false;
             this.dgProfessors.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgProfessors.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgProfessors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgProfessors.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -201,10 +218,11 @@
             // lblLoadingSchedule
             // 
             this.lblLoadingSchedule.AutoSize = true;
+            this.lblLoadingSchedule.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLoadingSchedule.ForeColor = System.Drawing.Color.Red;
             this.lblLoadingSchedule.Location = new System.Drawing.Point(126, 316);
             this.lblLoadingSchedule.Name = "lblLoadingSchedule";
-            this.lblLoadingSchedule.Size = new System.Drawing.Size(183, 13);
+            this.lblLoadingSchedule.Size = new System.Drawing.Size(199, 13);
             this.lblLoadingSchedule.TabIndex = 5;
             this.lblLoadingSchedule.Text = "Carregando dados da programação...";
             this.lblLoadingSchedule.Visible = false;
@@ -212,55 +230,57 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(27, 42);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Professores";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(447, 42);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 13);
+            this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 7;
             this.label2.Text = "Classes";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(27, 316);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 13);
+            this.label3.Size = new System.Drawing.Size(76, 13);
             this.label3.TabIndex = 8;
             this.label3.Text = "Programação";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(450, 265);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(157, 13);
+            this.label4.Size = new System.Drawing.Size(172, 13);
             this.label4.TabIndex = 9;
             this.label4.Text = "(Duplo clique na sala para exibir";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(450, 282);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(84, 13);
+            this.label5.Size = new System.Drawing.Size(90, 13);
             this.label5.TabIndex = 10;
             this.label5.Text = "a programação.)";
             // 
             // btnSaveSchedule
             // 
             this.btnSaveSchedule.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnSaveSchedule.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveSchedule.Location = new System.Drawing.Point(635, 337);
             this.btnSaveSchedule.Name = "btnSaveSchedule";
             this.btnSaveSchedule.Size = new System.Drawing.Size(159, 122);

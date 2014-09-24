@@ -104,6 +104,7 @@
     <Compile Include="AppData\WeekSchedule.cs">
       <DependentUpon>WeekClassSchedule.tt</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\ProfessorExtensions.cs" />
     <Compile Include="FrmApplication.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +191,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Images\ajax-loader.gif" />
     <None Include="AppDb\WeekClassSchedule.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

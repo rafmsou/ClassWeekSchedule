@@ -6,36 +6,38 @@ using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeekClassSchedule.AppData;
+using WeekClassSchedule.AppDatalayer;
 
 namespace WeekClassSchedule
 {
     public partial class FrmWeekClassSchedule : Form
     {
-        private WeekClassScheduleEntities _entitiesDb;
-        private List<Professor> _professorsList;
-        private List<vWeeklyScheduleByClass> _weeklyScheduleByClass;
-        private List<WeekSchedule> _weekScheduleList;
+        private ProfessorDatalayer _professorDatalayer;
+        private ClassroomDatalayer _classroomDatalayer;
+        private ScheduleDatalayer _scheduleDatalayer;
 
+        private List<Professor> _professorsList;
 
         public FrmWeekClassSchedule()
         {
             InitializeComponent();
-            _entitiesDb = new WeekClassScheduleEntities();
+            _professorDatalayer = new ProfessorDatalayer();
+            _classroomDatalayer = new ClassroomDatalayer();
+            _scheduleDatalayer = new ScheduleDatalayer();
         }
 
         private void FrmWeekClassSchedule_Load(object sender, EventArgs e)
         {
             dgProfessors.AutoGenerateColumns = false;
-            _professorsList = _entitiesDb.Professor.ToList();
+            _professorsList = _professorDatalayer.GetProfessorList();
             dgProfessors.DataSource = _professorsList;
 
             dgClassSchedule.AutoGenerateColumns = false;
-            _weeklyScheduleByClass = _entitiesDb.vWeeklyScheduleByClass.ToList();
 
             if (!_professorsList.Any(p => p.Id == 0))
                 _professorsList.Add(new Professor() { Id = 0, Name = "Vaga" });
 
-            lstClassrooms.DataSource = _entitiesDb.Classroom.ToList();
+            lstClassrooms.DataSource = _classroomDatalayer.ClassroomList;
 
             this.Height = this.MdiParent.Height;
             this.Width = this.MdiParent.Width;
@@ -59,10 +61,6 @@ namespace WeekClassSchedule
             Debug.WriteLine(e.Exception.Message);
         }
 
-        private void dgClassSchedule_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
-
         private void dgClassSchedule_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             for (int i = 0; i < dgClassSchedule.Rows.Count; i++)
@@ -72,8 +70,9 @@ namespace WeekClassSchedule
                 foreach (DataGridViewComboBoxCell cell in dgClassSchedule.Rows[i].Cells.OfType<DataGridViewComboBoxCell>())
                 {
                     weekDay++;
-                    cell.DataSource = _professorsList
-                        .Where(p => p.Id.Equals(0) || p.AttendanceRules.Any(rule => rule.ClassNumber == classNumber && rule.DayOfWeek == weekDay)).ToList();
+
+                    var filteredProfessors = _professorsList
+                        .Where(p => p.AttendanceRules.Any(rule => rule.ClassNumber == classNumber && rule.DayOfWeek == weekDay)).ToList();
                     //cell.DataSource = _professorsList.ToList();
                     cell.DisplayMember = "Name";
                     cell.ValueType = typeof(int);
@@ -96,37 +95,18 @@ namespace WeekClassSchedule
         private void lstClassrooms_DoubleClick(object sender, EventArgs e)
         {
             lblLoadingSchedule.Visible = true;
-            dgClassSchedule.DataSource = _weeklyScheduleByClass.Where(ws => ws.Classe == Convert.ToInt32(lstClassrooms.SelectedValue)).ToList();
+            dgClassSchedule.DataSource = null;
+            dgClassSchedule.DataSource = _scheduleDatalayer.ScheduleViewByClass(Convert.ToInt32(lstClassrooms.SelectedValue));
             lblLoadingSchedule.Visible = false;
         }
 
         private async void btnSaveSchedule_Click(object sender, EventArgs e)
         {
-            var dataSource = (List<vWeeklyScheduleByClass>)dgClassSchedule.DataSource;
-            var classroomId = dataSource.First().Classe;
-            this._weekScheduleList = _entitiesDb.WeekSchedule.Where(ws => ws.ClassroomId == classroomId).ToList();
+            if (dgClassSchedule.DataSource == null)
+                return;
 
-            foreach (var item in dataSource)
-            {
-                var mondaySchedule = _weekScheduleList.Where(w => w.ClassNumber == item.Aula && w.WeekDay == (int)DayOfWeek.Monday).Single();
-                mondaySchedule.ProfessorId = item.Segunda.Value;
-
-                var tuesdaySchedule = _weekScheduleList.Where(w => w.ClassNumber == item.Aula && w.WeekDay == (int)DayOfWeek.Tuesday).Single();
-                tuesdaySchedule.ProfessorId = item.Terça.Value;
-
-                var wednesdaySchedule = _weekScheduleList.Where(w => w.ClassNumber == item.Aula && w.WeekDay == (int)DayOfWeek.Wednesday).Single();
-                wednesdaySchedule.ProfessorId = item.Quarta.Value;
-
-                var thursdaySchedule = _weekScheduleList.Where(w => w.ClassNumber == item.Aula && w.WeekDay == (int)DayOfWeek.Thursday).Single();
-                thursdaySchedule.ProfessorId = item.Quinta.Value;
-
-                var fridaySchedule = _weekScheduleList.Where(w => w.ClassNumber == item.Aula && w.WeekDay == (int)DayOfWeek.Friday).Single();
-                fridaySchedule.ProfessorId = item.Sexta.Value;
-
-                this._entitiesDb.Entry <vWeeklyScheduleByClass>(item).State = EntityState.Unchanged;
-            }
-
-            await this._entitiesDb.SaveChangesAsync();
+            var scheduleView = (List<vWeeklyScheduleByClass>)dgClassSchedule.DataSource;
+            await _scheduleDatalayer.SaveWeekSchedulesAsync(scheduleView);
         }
     }
 }

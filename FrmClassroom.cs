@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeekClassSchedule.AppData;
-using WeekClassSchedule.Helpers;
+using WeekClassSchedule.AppDatalayer;
 
 namespace WeekClassSchedule
 {
@@ -33,7 +33,7 @@ namespace WeekClassSchedule
             {
                 _classroomDatalayer.Save(c);
                 dgClassrooms.DataSource = null;
-                dgClassrooms.DataSource = _classroomDatalayer.GetClassroomList();
+                dgClassrooms.DataSource = _classroomDatalayer.ClassroomList;
 
                 txtName.Text = string.Empty;
                 txtClassNum.Text = string.Empty;
@@ -47,17 +47,26 @@ namespace WeekClassSchedule
 
         private async void FrmClassroom_Load(object sender, EventArgs e)
         {
+            btnSave.Enabled = false;
+            loading.Visible = true;
+
+            var classrooms = await _classroomDatalayer.GetClassroomListAsync();
+            btnSave.Enabled = true;
             dgClassrooms.AutoGenerateColumns = false;
-            dgClassrooms.DataSource = await _classroomDatalayer.GetClassroomListAsync();
+            dgClassrooms.DataSource = classrooms;
+            _classroomDatalayer.ClassroomList = classrooms;
 
             this.Height = this.MdiParent.Height;
             this.Width = this.MdiParent.Width;
+
+            loading.Visible = false;
         }
 
         private void btnGenerateSchedule_Click(object sender, EventArgs e)
         {
             lblGeneratingSchedule.Visible = true;
             lblDone.Visible = false;
+            loading.Visible = true;
 
             for (int i = 0; i < dgClassrooms.SelectedRows.Count; i++)
             {
@@ -68,11 +77,20 @@ namespace WeekClassSchedule
 
             lblGeneratingSchedule.Visible = false;
             lblDone.Visible = true;
+            loading.Visible = false;
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void dgClassrooms_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 46)
+            {
+                MessageBox.Show("Deseja excluir as salas selecionadas?", "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            }
         }
     }
 }

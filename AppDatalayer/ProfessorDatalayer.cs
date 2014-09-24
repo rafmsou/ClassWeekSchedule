@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using WeekClassSchedule.AppData;
+using WeekClassSchedule.Extensions;
 
 namespace WeekClassSchedule.AppDatalayer
 {
@@ -26,12 +27,12 @@ namespace WeekClassSchedule.AppDatalayer
         public List<Professor> GetProfessorList()
         {
             if (_professorList == null)
-                _professorList = this.GetProfessorListAsync().Result;
+                _professorList = _entitiesDb.Professor.OrderBy(i => i.Name).ToList();
 
             return _professorList;
         }
 
-        private async Task<List<Professor>> GetProfessorListAsync()
+        public async Task<List<Professor>> GetProfessorListAsync()
         {
             return await _entitiesDb.Professor.OrderBy(i => i.Name).ToListAsync();
         }
@@ -56,5 +57,11 @@ namespace WeekClassSchedule.AppDatalayer
             _entitiesDb.SaveChanges();
         }
 
+        public List<Professor> GetForScheduling(DayOfWeek dayOfWeek, int classNumber)
+        { 
+            return _entitiesDb.Professor
+                        .Where(p => p.AttendanceRules.Any(rule => rule.ClassNumber == classNumber && rule.DayOfWeek == (int)dayOfWeek)
+                        && !p.HasSchedule(dayOfWeek, classNumber)).ToList();  
+        }
     }
 }
