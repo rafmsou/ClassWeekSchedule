@@ -71,9 +71,12 @@ namespace WeekClassSchedule
                 {
                     weekDay++;
 
-                    var filteredProfessors = _professorsList
-                        .Where(p => p.AttendanceRules.Any(rule => rule.ClassNumber == classNumber && rule.DayOfWeek == weekDay)).ToList();
-                    //cell.DataSource = _professorsList.ToList();
+                    var filteredProfessors = _professorDatalayer.GetForScheduling((DayOfWeek)weekDay, classNumber, Convert.ToInt32(lstClassrooms.SelectedValue));
+
+                    if (!filteredProfessors.Any(p => p.Id == 0))
+                        filteredProfessors.Add(new Professor() { Id = 0, Name = "Vaga" });
+
+                    cell.DataSource = filteredProfessors;
                     cell.DisplayMember = "Name";
                     cell.ValueType = typeof(int);
                     cell.ValueMember = "Id";
@@ -102,11 +105,21 @@ namespace WeekClassSchedule
 
         private async void btnSaveSchedule_Click(object sender, EventArgs e)
         {
+            loading.Visible = true;
+
             if (dgClassSchedule.DataSource == null)
                 return;
 
             var scheduleView = (List<vWeeklyScheduleByClass>)dgClassSchedule.DataSource;
             await _scheduleDatalayer.SaveWeekSchedulesAsync(scheduleView);
+
+            loading.Visible = false;
+            lblScheduleSaved.Visible = true;
+        }
+
+        private void FrmWeekClassSchedule_Click(object sender, EventArgs e)
+        {
+            lblScheduleSaved.Visible = false;
         }
     }
 }

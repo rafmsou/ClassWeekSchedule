@@ -11,10 +11,10 @@ namespace WeekClassSchedule.Extensions
     {
         private static WeekClassScheduleEntities _entitiesDb = new WeekClassScheduleEntities();
 
-        public static bool HasSchedule(this Professor p, DayOfWeek weekDay, int classNumber)
+        public static bool HasSchedule(this Professor p, DayOfWeek weekDay, int classNumber, int classroomId)
         {
             return _entitiesDb.WeekSchedule
-                .Any(ws => ws.ProfessorId == p.Id && ws.WeekDay == (int)weekDay && ws.ClassNumber == classNumber);
+                .Any(ws => ws.ProfessorId == p.Id && ws.WeekDay == (int)weekDay && ws.ClassNumber == classNumber && ws.ClassroomId != classroomId);
         }
     }
 }

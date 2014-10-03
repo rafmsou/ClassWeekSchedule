@@ -107,7 +107,7 @@ namespace WeekClassSchedule
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             lblMessage.Visible = false;
-            lblWait.Visible = true;
+            loading.Visible = true;
 
             Professor professor;
 
@@ -142,7 +142,7 @@ namespace WeekClassSchedule
 
                 _professorDatalayer.SaveOrUpdate(professor);
 
-                lblWait.Visible = false;
+                loading.Visible = false;
                 lblMessage.Visible = true;
             }
             catch (Exception ex)

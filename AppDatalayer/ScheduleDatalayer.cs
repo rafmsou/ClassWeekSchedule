@@ -25,6 +25,7 @@ namespace WeekClassSchedule.AppDatalayer
 
         public List<vWeeklyScheduleByClass> ScheduleViewByClass(int classroomId)
         {
+            _entitiesDb = new WeekClassScheduleEntities();
             return _entitiesDb.vWeeklyScheduleByClass.Where(ws => ws.Classe == classroomId).ToList();
         }
 

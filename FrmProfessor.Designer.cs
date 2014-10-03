@@ -52,8 +52,9 @@
             this.lblMessage = new System.Windows.Forms.Label();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
-            this.lblWait = new System.Windows.Forms.Label();
+            this.loading = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loading)).BeginInit();
             this.SuspendLayout();
             // 
             // txtName
@@ -106,7 +107,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(117, 88);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 13);
+            this.label3.Size = new System.Drawing.Size(99, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Quantidade Aulas";
             // 
@@ -126,6 +127,7 @@
             // 
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.panel1.Controls.Add(this.loading);
             this.panel1.Controls.Add(this.cbAll);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label3);
@@ -184,7 +186,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(331, 158);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(43, 13);
+            this.label7.Size = new System.Drawing.Size(42, 13);
             this.label7.TabIndex = 9;
             this.label7.Text = "Quinta";
             // 
@@ -193,7 +195,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(240, 158);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(43, 13);
+            this.label6.Size = new System.Drawing.Size(42, 13);
             this.label6.TabIndex = 8;
             this.label6.Text = "Quarta";
             // 
@@ -309,7 +311,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(312, 111);
+            this.label10.Location = new System.Drawing.Point(312, 97);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(81, 21);
             this.label10.TabIndex = 12;
@@ -353,17 +355,16 @@
             this.btnNew.UseVisualStyleBackColor = false;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
-            // lblWait
+            // loading
             // 
-            this.lblWait.AutoSize = true;
-            this.lblWait.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWait.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblWait.Location = new System.Drawing.Point(298, 455);
-            this.lblWait.Name = "lblWait";
-            this.lblWait.Size = new System.Drawing.Size(61, 13);
-            this.lblWait.TabIndex = 16;
-            this.lblWait.Text = "Aguarde...";
-            this.lblWait.Visible = false;
+            this.loading.BackColor = System.Drawing.Color.Transparent;
+            this.loading.Image = global::WeekClassSchedule.Properties.Resources.ajax_loader;
+            this.loading.Location = new System.Drawing.Point(232, 107);
+            this.loading.Name = "loading";
+            this.loading.Size = new System.Drawing.Size(68, 70);
+            this.loading.TabIndex = 16;
+            this.loading.TabStop = false;
+            this.loading.Visible = false;
             // 
             // FrmProfessor
             // 
@@ -372,7 +373,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(714, 623);
-            this.Controls.Add(this.lblWait);
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.lblMessage);
@@ -389,6 +389,7 @@
             this.Load += new System.EventHandler(this.FrmProfessor_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loading)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -420,6 +421,6 @@
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnNew;
-        private System.Windows.Forms.Label lblWait;
+        private System.Windows.Forms.PictureBox loading;
     }
 }

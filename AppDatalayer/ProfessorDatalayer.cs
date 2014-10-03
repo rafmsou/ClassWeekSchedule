@@ -57,11 +57,11 @@ namespace WeekClassSchedule.AppDatalayer
             _entitiesDb.SaveChanges();
         }
 
-        public List<Professor> GetForScheduling(DayOfWeek dayOfWeek, int classNumber)
+        public List<Professor> GetForScheduling(DayOfWeek dayOfWeek, int classNumber, int classroomId)
         { 
-            return _entitiesDb.Professor
+            return _professorList
                         .Where(p => p.AttendanceRules.Any(rule => rule.ClassNumber == classNumber && rule.DayOfWeek == (int)dayOfWeek)
-                        && !p.HasSchedule(dayOfWeek, classNumber)).ToList();  
+                        && !p.HasSchedule(dayOfWeek, classNumber, classroomId)).ToList();  
         }
     }
 }
