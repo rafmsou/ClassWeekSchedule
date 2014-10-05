@@ -37,6 +37,11 @@ namespace WeekClassSchedule.AppDatalayer
             return await _entitiesDb.Professor.OrderBy(i => i.Name).ToListAsync();
         }
 
+        public async Task SaveChangesAsync()
+        {
+            await this._entitiesDb.SaveChangesAsync();
+        }
+
         public void SaveOrUpdate(Professor professorToSave)
         {
             if (professorToSave.Id == 0)
@@ -61,7 +66,8 @@ namespace WeekClassSchedule.AppDatalayer
         { 
             return _professorList
                         .Where(p => p.AttendanceRules.Any(rule => rule.ClassNumber == classNumber && rule.DayOfWeek == (int)dayOfWeek)
-                        && !p.HasSchedule(dayOfWeek, classNumber, classroomId)).ToList();  
+                        && !p.HasSchedule(dayOfWeek, classNumber, classroomId)
+                        && p.NumberOfRemainingClasses > 0).ToList();  
         }
     }
 }

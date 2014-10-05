@@ -84,23 +84,17 @@ namespace WeekClassSchedule
             }
         }
 
-        private void dgClassSchedule_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex > 0)
-            {
-                var value = (int)dgClassSchedule[e.ColumnIndex, e.RowIndex].Value;
-                var professor = _professorsList.Where(p => p.Id == value).FirstOrDefault();
-                //professor.NumberOfRemainingClasses = _weeklyScheduleByClass.Count(ws =;
-                dgProfessors.Refresh();
-            }
-        }
-
         private void lstClassrooms_DoubleClick(object sender, EventArgs e)
         {
             lblLoadingSchedule.Visible = true;
+            loading.Visible = true;
+
             dgClassSchedule.DataSource = null;
             dgClassSchedule.DataSource = _scheduleDatalayer.ScheduleViewByClass(Convert.ToInt32(lstClassrooms.SelectedValue));
+
+            loading.Visible = false;
             lblLoadingSchedule.Visible = false;
+            this.btnSaveSchedule.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
         }
 
         private async void btnSaveSchedule_Click(object sender, EventArgs e)
@@ -112,12 +106,67 @@ namespace WeekClassSchedule
 
             var scheduleView = (List<vWeeklyScheduleByClass>)dgClassSchedule.DataSource;
             await _scheduleDatalayer.SaveWeekSchedulesAsync(scheduleView);
+            await _professorDatalayer.SaveChangesAsync();
 
             loading.Visible = false;
             lblScheduleSaved.Visible = true;
+            this.btnSaveSchedule.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
         }
 
         private void FrmWeekClassSchedule_Click(object sender, EventArgs e)
+        {
+            lblScheduleSaved.Visible = false;
+        }
+
+        private void dgClassSchedule_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                var value = (int)dgClassSchedule[e.ColumnIndex, e.RowIndex].Value;
+
+                if (value > 0)
+                {
+                    var professor = _professorsList.Where(p => p.Id == value).FirstOrDefault();
+
+                    //update the remaining classes number for the profe
+                    professor.NumberOfRemainingClasses++;
+                    dgProfessors.DataSource = null;
+                    dgProfessors.DataSource = _professorsList;
+                }
+            }
+        }
+
+        private void dgClassSchedule_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                var value = (int)dgClassSchedule[e.ColumnIndex, e.RowIndex].Value;
+
+                if (value > 0)
+                {
+                    var professor = _professorsList.Where(p => p.Id == value).FirstOrDefault();
+
+                    //update the remaining classes number for the profe
+                    professor.NumberOfRemainingClasses--;
+                    dgProfessors.DataSource = null;
+                    dgProfessors.DataSource = _professorsList;
+                }
+
+                this.btnSaveSchedule.BackColor = System.Drawing.Color.DarkSalmon;
+            }
+        }
+
+        private void lstClassrooms_Click(object sender, EventArgs e)
+        {
+            lblScheduleSaved.Visible = false;
+        }
+
+        private void dgClassSchedule_Click(object sender, EventArgs e)
+        {
+            lblScheduleSaved.Visible = false;
+        }
+
+        private void dgProfessors_Click(object sender, EventArgs e)
         {
             lblScheduleSaved.Visible = false;
         }

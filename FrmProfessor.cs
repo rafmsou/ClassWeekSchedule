@@ -23,6 +23,8 @@ namespace WeekClassSchedule
             InitializeComponent();
             WeekAttendanceDict = new List<KeyValuePair<DayOfWeek, int>>();
             _professorDatalayer = new ProfessorDatalayer();
+
+            this.btnExcluir.Visible = false;
         }
 
         public FrmProfessor(int professorId)
@@ -38,6 +40,8 @@ namespace WeekClassSchedule
             this.txtSubject.Text = professor.Subject;
             this.txtWeekClassesQty.Text = professor.NumberOfClassesWeek.ToString();
             this.FillAttendanceCheckBoxes(professor.AttendanceRules.ToList());
+
+            this.btnExcluir.Visible = true;
         }
 
         private void FillAttendanceCheckBoxes(List<AttendanceRules> rules)
@@ -144,6 +148,7 @@ namespace WeekClassSchedule
 
                 loading.Visible = false;
                 lblMessage.Visible = true;
+                this.btnExcluir.Visible = true;
             }
             catch (Exception ex)
             {

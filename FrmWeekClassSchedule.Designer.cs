@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgClassSchedule = new System.Windows.Forms.DataGridView();
             this.Aula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Segunda = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -63,14 +63,14 @@
             this.dgClassSchedule.AllowUserToAddRows = false;
             this.dgClassSchedule.AllowUserToDeleteRows = false;
             this.dgClassSchedule.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgClassSchedule.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgClassSchedule.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgClassSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgClassSchedule.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Aula,
@@ -85,9 +85,11 @@
             this.dgClassSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgClassSchedule.Size = new System.Drawing.Size(594, 286);
             this.dgClassSchedule.TabIndex = 0;
-            this.dgClassSchedule.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgClassSchedule_CellValueChanged);
+            this.dgClassSchedule.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgClassSchedule_CellBeginEdit);
+            this.dgClassSchedule.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgClassSchedule_CellEndEdit);
             this.dgClassSchedule.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgClassSchedule_DataBindingComplete);
             this.dgClassSchedule.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgSala1_DataError);
+            this.dgClassSchedule.Click += new System.EventHandler(this.dgClassSchedule_Click);
             // 
             // Aula
             // 
@@ -145,14 +147,14 @@
             this.dgProfessors.AllowUserToAddRows = false;
             this.dgProfessors.AllowUserToDeleteRows = false;
             this.dgProfessors.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgProfessors.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgProfessors.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgProfessors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgProfessors.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -167,6 +169,7 @@
             this.dgProfessors.Size = new System.Drawing.Size(403, 228);
             this.dgProfessors.TabIndex = 2;
             this.dgProfessors.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProfessors_CellContentDoubleClick);
+            this.dgProfessors.Click += new System.EventHandler(this.dgProfessors_Click);
             // 
             // Id
             // 
@@ -216,6 +219,7 @@
             this.lstClassrooms.Size = new System.Drawing.Size(162, 199);
             this.lstClassrooms.TabIndex = 4;
             this.lstClassrooms.ValueMember = "Id";
+            this.lstClassrooms.Click += new System.EventHandler(this.lstClassrooms_Click);
             this.lstClassrooms.DoubleClick += new System.EventHandler(this.lstClassrooms_DoubleClick);
             // 
             // lblLoadingSchedule
