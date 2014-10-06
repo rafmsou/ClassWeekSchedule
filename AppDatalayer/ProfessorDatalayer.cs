@@ -46,11 +46,6 @@ namespace WeekClassSchedule.AppDatalayer
         {
             if (professorToSave.Id == 0)
                 _entitiesDb.Professor.Add(professorToSave);
-            else
-            {
-                var professor = this.GetById(professorToSave.Id);
-                professor = professorToSave;
-            }
 
             _entitiesDb.SaveChanges();
         }
@@ -59,6 +54,12 @@ namespace WeekClassSchedule.AppDatalayer
         {
             var professor = this.GetById(professorId);
             _entitiesDb.Professor.Remove(professor);
+            _entitiesDb.SaveChanges();
+        }
+
+        public void RemoveAttendanceRules(List<AttendanceRules> attendanceRules)
+        {
+            _entitiesDb.AttendanceRules.RemoveRange(attendanceRules);
             _entitiesDb.SaveChanges();
         }
 

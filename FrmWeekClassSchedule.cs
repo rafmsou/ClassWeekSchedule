@@ -17,6 +17,10 @@ namespace WeekClassSchedule
         private ScheduleDatalayer _scheduleDatalayer;
 
         private List<Professor> _professorsList;
+        private bool _scheduleIsModified = false;
+        private int _scheduleCellOldValue = 0;
+        private int _scheduleCellNewValue = 0;
+
 
         public FrmWeekClassSchedule()
         {
@@ -123,12 +127,13 @@ namespace WeekClassSchedule
             if (e.RowIndex > -1)
             {
                 var value = (int)dgClassSchedule[e.ColumnIndex, e.RowIndex].Value;
+                this._scheduleCellOldValue = value;
 
                 if (value > 0)
                 {
                     var professor = _professorsList.Where(p => p.Id == value).FirstOrDefault();
 
-                    //update the remaining classes number for the profe
+                    //return the class to the professor
                     professor.NumberOfRemainingClasses++;
                     dgProfessors.DataSource = null;
                     dgProfessors.DataSource = _professorsList;
@@ -141,18 +146,29 @@ namespace WeekClassSchedule
             if (e.RowIndex > -1)
             {
                 var value = (int)dgClassSchedule[e.ColumnIndex, e.RowIndex].Value;
+                this._scheduleCellNewValue = value;
 
                 if (value > 0)
                 {
                     var professor = _professorsList.Where(p => p.Id == value).FirstOrDefault();
 
-                    //update the remaining classes number for the profe
-                    professor.NumberOfRemainingClasses--;
-                    dgProfessors.DataSource = null;
-                    dgProfessors.DataSource = _professorsList;
+                    if (professor.NumberOfRemainingClasses > 0)
+                    {
+                        //subtract the class from the professor
+                        professor.NumberOfRemainingClasses--;
+                        dgProfessors.DataSource = null;
+                        dgProfessors.DataSource = _professorsList;
+                    }
+                    else
+                    { 
+                        MessageBox.Show(string.Format("O professor {0} não possui mais aulas disponíveis.", dgClassSchedule[e.ColumnIndex, e.RowIndex].FormattedValue), 
+                            "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        dgClassSchedule[e.ColumnIndex, e.RowIndex].Value = this._scheduleCellOldValue;
+                    }
                 }
 
-                this.btnSaveSchedule.BackColor = System.Drawing.Color.DarkSalmon;
+                this._scheduleIsModified = (this._scheduleCellOldValue != this._scheduleCellNewValue);
+                if(this._scheduleIsModified) this.btnSaveSchedule.BackColor = System.Drawing.Color.DarkSalmon;
             }
         }
 

@@ -128,10 +128,7 @@ namespace WeekClassSchedule
                 professor.NumberOfClassesWeek = Convert.ToInt32(txtWeekClassesQty.Text);
                 professor.NumberOfRemainingClasses = professor.NumberOfClassesWeek;
 
-                foreach(var rule in professor.AttendanceRules.ToList())
-                {
-                    professor.AttendanceRules.Remove(rule);
-                }
+                _professorDatalayer.RemoveAttendanceRules(professor.AttendanceRules.ToList());
 
                 // fills attendance rules data
                 foreach (var item in WeekAttendanceDict)
