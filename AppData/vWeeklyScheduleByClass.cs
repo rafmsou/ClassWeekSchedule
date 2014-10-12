@@ -14,12 +14,12 @@ namespace WeekClassSchedule.AppData
     
     public partial class vWeeklyScheduleByClass
     {
-        public int Classe { get; set; }
-        public int Aula { get; set; }
-        public Nullable<int> Segunda { get; set; }
-        public Nullable<int> Terça { get; set; }
-        public Nullable<int> Quarta { get; set; }
-        public Nullable<int> Quinta { get; set; }
-        public Nullable<int> Sexta { get; set; }
+        public int ClassroomId { get; set; }
+        public int ClassNumber { get; set; }
+        public Nullable<int> Monday { get; set; }
+        public Nullable<int> Tuesday { get; set; }
+        public Nullable<int> Wednesday { get; set; }
+        public Nullable<int> Thursday { get; set; }
+        public Nullable<int> Friday { get; set; }
     }
 }

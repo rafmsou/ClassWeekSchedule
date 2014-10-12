@@ -9,9 +9,9 @@
         <EntityTypeShape EntityType="WeekClassScheduleModel.Classroom" Width="1.5" PointX="1.125" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="WeekClassScheduleModel.ClassroomClasses" Width="1.5" PointX="3.125" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="WeekClassScheduleModel.Professor" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeekClassScheduleModel.vWeeklyScheduleByClass" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="WeekClassScheduleModel.FK_ATTENDANCE_RULES_PROFESSOR" ManuallyRouted="false" />
         <EntityTypeShape EntityType="WeekClassScheduleModel.WeekSchedule" Width="1.5" PointX="5.375" PointY="3.875" />
+        <EntityTypeShape EntityType="WeekClassScheduleModel.vWeeklyScheduleByClass" Width="1.5" PointX="5.625" PointY="0.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

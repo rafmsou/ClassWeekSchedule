@@ -13,13 +13,13 @@
           <EntitySet Name="WeekSchedule" EntityType="WeekClassScheduleModel.Store.WeekSchedule" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="vWeeklyScheduleByClass" EntityType="WeekClassScheduleModel.Store.vWeeklyScheduleByClass" store:Type="Views" store:Schema="dbo" store:Name="vWeeklyScheduleByClass">
             <DefiningQuery>SELECT 
-      [vWeeklyScheduleByClass].[Classe] AS [Classe], 
-      [vWeeklyScheduleByClass].[Aula] AS [Aula], 
-      [vWeeklyScheduleByClass].[Segunda] AS [Segunda], 
-      [vWeeklyScheduleByClass].[Terça] AS [Terça], 
-      [vWeeklyScheduleByClass].[Quarta] AS [Quarta], 
-      [vWeeklyScheduleByClass].[Quinta] AS [Quinta], 
-      [vWeeklyScheduleByClass].[Sexta] AS [Sexta]
+      [vWeeklyScheduleByClass].[ClassroomId] AS [ClassroomId], 
+      [vWeeklyScheduleByClass].[ClassNumber] AS [ClassNumber], 
+      [vWeeklyScheduleByClass].[Monday] AS [Monday], 
+      [vWeeklyScheduleByClass].[Tuesday] AS [Tuesday], 
+      [vWeeklyScheduleByClass].[Wednesday] AS [Wednesday], 
+      [vWeeklyScheduleByClass].[Thursday] AS [Thursday], 
+      [vWeeklyScheduleByClass].[Friday] AS [Friday]
       FROM [dbo].[vWeeklyScheduleByClass] AS [vWeeklyScheduleByClass]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_ATTENDANCE_RULES_PROFESSOR" Association="WeekClassScheduleModel.Store.FK_ATTENDANCE_RULES_PROFESSOR">
@@ -78,16 +78,16 @@
       -->
         <EntityType Name="vWeeklyScheduleByClass">
           <Key>
-            <PropertyRef Name="Classe" />
-            <PropertyRef Name="Aula" />
+            <PropertyRef Name="ClassroomId" />
+            <PropertyRef Name="ClassNumber" />
           </Key>
-          <Property Name="Classe" Type="int" Nullable="false" />
-          <Property Name="Aula" Type="int" Nullable="false" />
-          <Property Name="Segunda" Type="int" />
-          <Property Name="Terça" Type="int" />
-          <Property Name="Quarta" Type="int" />
-          <Property Name="Quinta" Type="int" />
-          <Property Name="Sexta" Type="int" />
+          <Property Name="ClassroomId" Type="int" Nullable="false" />
+          <Property Name="ClassNumber" Type="int" Nullable="false" />
+          <Property Name="Monday" Type="int" />
+          <Property Name="Tuesday" Type="int" />
+          <Property Name="Wednesday" Type="int" />
+          <Property Name="Thursday" Type="int" />
+          <Property Name="Friday" Type="int" />
         </EntityType>
         <Association Name="FK_ATTENDANCE_RULES_PROFESSOR">
           <End Role="Professor" Type="WeekClassScheduleModel.Store.Professor" Multiplicity="1" />
@@ -110,12 +110,12 @@
           <EntitySet Name="Classroom" EntityType="WeekClassScheduleModel.Classroom" />
           <EntitySet Name="ClassroomClasses" EntityType="WeekClassScheduleModel.ClassroomClasses" />
           <EntitySet Name="Professor" EntityType="WeekClassScheduleModel.Professor" />
-          <EntitySet Name="vWeeklyScheduleByClass" EntityType="WeekClassScheduleModel.vWeeklyScheduleByClass" />
           <AssociationSet Name="FK_ATTENDANCE_RULES_PROFESSOR" Association="WeekClassScheduleModel.FK_ATTENDANCE_RULES_PROFESSOR">
             <End Role="Professor" EntitySet="Professor" />
             <End Role="AttendanceRules" EntitySet="AttendanceRules" />
           </AssociationSet>
           <EntitySet Name="WeekSchedule" EntityType="WeekClassScheduleModel.WeekSchedule" />
+          <EntitySet Name="vWeeklyScheduleByClass" EntityType="WeekClassScheduleModel.vWeeklyScheduleByClass" />
         </EntityContainer>
         <EntityType Name="AttendanceRules">
           <Key>
@@ -154,19 +154,6 @@
           <Property Name="NumberOfRemainingClasses" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AttendanceRules" Relationship="WeekClassScheduleModel.FK_ATTENDANCE_RULES_PROFESSOR" FromRole="Professor" ToRole="AttendanceRules" />
         </EntityType>
-        <EntityType Name="vWeeklyScheduleByClass">
-          <Key>
-            <PropertyRef Name="Classe" />
-            <PropertyRef Name="Aula" />
-          </Key>
-          <Property Name="Classe" Type="Int32" Nullable="false" />
-          <Property Name="Aula" Type="Int32" Nullable="false" />
-          <Property Name="Segunda" Type="Int32" />
-          <Property Name="Terça" Type="Int32" />
-          <Property Name="Quarta" Type="Int32" />
-          <Property Name="Quinta" Type="Int32" />
-          <Property Name="Sexta" Type="Int32" />
-        </EntityType>
         <Association Name="FK_ATTENDANCE_RULES_PROFESSOR">
           <End Role="Professor" Type="WeekClassScheduleModel.Professor" Multiplicity="1" />
           <End Role="AttendanceRules" Type="WeekClassScheduleModel.AttendanceRules" Multiplicity="*" />
@@ -189,6 +176,19 @@
           <Property Type="Int16" Name="ClassNumber" Nullable="false" />
           <Property Type="Int16" Name="WeekDay" Nullable="false" />
           <Property Type="Int32" Name="ProfessorId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vWeeklyScheduleByClass">
+          <Key>
+            <PropertyRef Name="ClassroomId" />
+            <PropertyRef Name="ClassNumber" />
+          </Key>
+          <Property Type="Int32" Name="ClassroomId" Nullable="false" />
+          <Property Type="Int32" Name="ClassNumber" Nullable="false" />
+          <Property Type="Int32" Name="Monday" />
+          <Property Type="Int32" Name="Tuesday" />
+          <Property Type="Int32" Name="Wednesday" />
+          <Property Type="Int32" Name="Thursday" />
+          <Property Type="Int32" Name="Friday" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -234,24 +234,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vWeeklyScheduleByClass">
-            <EntityTypeMapping TypeName="WeekClassScheduleModel.vWeeklyScheduleByClass">
-              <MappingFragment StoreEntitySet="vWeeklyScheduleByClass">
-                <ScalarProperty Name="Classe" ColumnName="Classe" />
-                <ScalarProperty Name="Aula" ColumnName="Aula" />
-                <ScalarProperty Name="Segunda" ColumnName="Segunda" />
-                <ScalarProperty Name="Terça" ColumnName="Terça" />
-                <ScalarProperty Name="Quarta" ColumnName="Quarta" />
-                <ScalarProperty Name="Quinta" ColumnName="Quinta" />
-                <ScalarProperty Name="Sexta" ColumnName="Sexta" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="WeekSchedule">
             <EntityTypeMapping TypeName="WeekClassScheduleModel.WeekSchedule">
               <MappingFragment StoreEntitySet="WeekSchedule">
                 <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
                 <ScalarProperty Name="WeekDay" ColumnName="WeekDay" />
+                <ScalarProperty Name="ClassNumber" ColumnName="ClassNumber" />
+                <ScalarProperty Name="ClassroomId" ColumnName="ClassroomId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vWeeklyScheduleByClass">
+            <EntityTypeMapping TypeName="WeekClassScheduleModel.vWeeklyScheduleByClass">
+              <MappingFragment StoreEntitySet="vWeeklyScheduleByClass">
+                <ScalarProperty Name="Friday" ColumnName="Friday" />
+                <ScalarProperty Name="Thursday" ColumnName="Thursday" />
+                <ScalarProperty Name="Wednesday" ColumnName="Wednesday" />
+                <ScalarProperty Name="Tuesday" ColumnName="Tuesday" />
+                <ScalarProperty Name="Monday" ColumnName="Monday" />
                 <ScalarProperty Name="ClassNumber" ColumnName="ClassNumber" />
                 <ScalarProperty Name="ClassroomId" ColumnName="ClassroomId" />
               </MappingFragment>

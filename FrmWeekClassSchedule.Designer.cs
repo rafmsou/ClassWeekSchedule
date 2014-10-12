@@ -28,15 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgClassSchedule = new System.Windows.Forms.DataGridView();
-            this.Aula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Segunda = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Terça = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Quarta = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Quinta = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Sexta = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dgProfessors = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +48,12 @@
             this.loading = new System.Windows.Forms.PictureBox();
             this.lblScheduleSaved = new System.Windows.Forms.Label();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.Aula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Segunda = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Terça = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Quarta = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Quinta = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Sexta = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgClassSchedule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgProfessors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loading)).BeginInit();
@@ -64,14 +64,14 @@
             this.dgClassSchedule.AllowUserToAddRows = false;
             this.dgClassSchedule.AllowUserToDeleteRows = false;
             this.dgClassSchedule.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgClassSchedule.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgClassSchedule.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgClassSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgClassSchedule.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Aula,
@@ -92,70 +92,19 @@
             this.dgClassSchedule.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgSala1_DataError);
             this.dgClassSchedule.Click += new System.EventHandler(this.dgClassSchedule_Click);
             // 
-            // Aula
-            // 
-            this.Aula.DataPropertyName = "Aula";
-            this.Aula.Frozen = true;
-            this.Aula.HeaderText = "Aula";
-            this.Aula.Name = "Aula";
-            this.Aula.ReadOnly = true;
-            this.Aula.Width = 40;
-            // 
-            // Segunda
-            // 
-            this.Segunda.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Segunda.DataPropertyName = "Segunda";
-            this.Segunda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Segunda.Frozen = true;
-            this.Segunda.HeaderText = "Segunda";
-            this.Segunda.Name = "Segunda";
-            this.Segunda.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Terça
-            // 
-            this.Terça.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Terça.DataPropertyName = "Terça";
-            this.Terça.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Terça.HeaderText = "Terça";
-            this.Terça.Name = "Terça";
-            // 
-            // Quarta
-            // 
-            this.Quarta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Quarta.DataPropertyName = "Quarta";
-            this.Quarta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Quarta.HeaderText = "Quarta";
-            this.Quarta.Name = "Quarta";
-            // 
-            // Quinta
-            // 
-            this.Quinta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Quinta.DataPropertyName = "Quinta";
-            this.Quinta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Quinta.HeaderText = "Quinta";
-            this.Quinta.Name = "Quinta";
-            // 
-            // Sexta
-            // 
-            this.Sexta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Sexta.DataPropertyName = "Sexta";
-            this.Sexta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Sexta.HeaderText = "Sexta";
-            this.Sexta.Name = "Sexta";
-            // 
             // dgProfessors
             // 
             this.dgProfessors.AllowUserToAddRows = false;
             this.dgProfessors.AllowUserToDeleteRows = false;
             this.dgProfessors.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgProfessors.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgProfessors.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgProfessors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgProfessors.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -331,6 +280,57 @@
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // Aula
+            // 
+            this.Aula.DataPropertyName = "Classnumber";
+            this.Aula.Frozen = true;
+            this.Aula.HeaderText = "Aula";
+            this.Aula.Name = "Aula";
+            this.Aula.ReadOnly = true;
+            this.Aula.Width = 40;
+            // 
+            // Segunda
+            // 
+            this.Segunda.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Segunda.DataPropertyName = "Monday";
+            this.Segunda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Segunda.Frozen = true;
+            this.Segunda.HeaderText = "Segunda";
+            this.Segunda.Name = "Segunda";
+            this.Segunda.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Terça
+            // 
+            this.Terça.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Terça.DataPropertyName = "Tuesday";
+            this.Terça.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Terça.HeaderText = "Terça";
+            this.Terça.Name = "Terça";
+            // 
+            // Quarta
+            // 
+            this.Quarta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Quarta.DataPropertyName = "Wednesday";
+            this.Quarta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Quarta.HeaderText = "Quarta";
+            this.Quarta.Name = "Quarta";
+            // 
+            // Quinta
+            // 
+            this.Quinta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Quinta.DataPropertyName = "Thursday";
+            this.Quinta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Quinta.HeaderText = "Quinta";
+            this.Quinta.Name = "Quinta";
+            // 
+            // Sexta
+            // 
+            this.Sexta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Sexta.DataPropertyName = "Friday";
+            this.Sexta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Sexta.HeaderText = "Sexta";
+            this.Sexta.Name = "Sexta";
+            // 
             // FrmWeekClassSchedule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -381,15 +381,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSaveSchedule;
+        private System.Windows.Forms.PictureBox loading;
+        private System.Windows.Forms.Label lblScheduleSaved;
+        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.DataGridViewTextBoxColumn Aula;
         private System.Windows.Forms.DataGridViewComboBoxColumn Segunda;
         private System.Windows.Forms.DataGridViewComboBoxColumn Terça;
         private System.Windows.Forms.DataGridViewComboBoxColumn Quarta;
         private System.Windows.Forms.DataGridViewComboBoxColumn Quinta;
         private System.Windows.Forms.DataGridViewComboBoxColumn Sexta;
-        private System.Windows.Forms.PictureBox loading;
-        private System.Windows.Forms.Label lblScheduleSaved;
-        private System.Windows.Forms.Button btnRefresh;
     }
 }
 

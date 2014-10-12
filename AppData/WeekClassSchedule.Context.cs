@@ -29,7 +29,7 @@ namespace WeekClassSchedule.AppData
         public DbSet<Classroom> Classroom { get; set; }
         public DbSet<ClassroomClasses> ClassroomClasses { get; set; }
         public DbSet<Professor> Professor { get; set; }
-        public DbSet<vWeeklyScheduleByClass> vWeeklyScheduleByClass { get; set; }
         public DbSet<WeekSchedule> WeekSchedule { get; set; }
+        public DbSet<vWeeklyScheduleByClass> vWeeklyScheduleByClass { get; set; }
     }
 }
