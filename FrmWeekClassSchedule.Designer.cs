@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgClassSchedule = new System.Windows.Forms.DataGridView();
             this.Aula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Segunda = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -53,6 +53,7 @@
             this.btnSaveSchedule = new System.Windows.Forms.Button();
             this.loading = new System.Windows.Forms.PictureBox();
             this.lblScheduleSaved = new System.Windows.Forms.Label();
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgClassSchedule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgProfessors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loading)).BeginInit();
@@ -63,14 +64,14 @@
             this.dgClassSchedule.AllowUserToAddRows = false;
             this.dgClassSchedule.AllowUserToDeleteRows = false;
             this.dgClassSchedule.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgClassSchedule.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgClassSchedule.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgClassSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgClassSchedule.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Aula,
@@ -79,11 +80,11 @@
             this.Quarta,
             this.Quinta,
             this.Sexta});
-            this.dgClassSchedule.Location = new System.Drawing.Point(26, 337);
+            this.dgClassSchedule.Location = new System.Drawing.Point(63, 346);
             this.dgClassSchedule.MultiSelect = false;
             this.dgClassSchedule.Name = "dgClassSchedule";
             this.dgClassSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgClassSchedule.Size = new System.Drawing.Size(594, 286);
+            this.dgClassSchedule.Size = new System.Drawing.Size(594, 222);
             this.dgClassSchedule.TabIndex = 0;
             this.dgClassSchedule.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgClassSchedule_CellBeginEdit);
             this.dgClassSchedule.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgClassSchedule_CellEndEdit);
@@ -147,14 +148,14 @@
             this.dgProfessors.AllowUserToAddRows = false;
             this.dgProfessors.AllowUserToDeleteRows = false;
             this.dgProfessors.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgProfessors.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgProfessors.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgProfessors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgProfessors.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -162,7 +163,7 @@
             this.Subject,
             this.NumberOfClassesWeek,
             this.NumberOfRemainingClasses});
-            this.dgProfessors.Location = new System.Drawing.Point(26, 63);
+            this.dgProfessors.Location = new System.Drawing.Point(63, 72);
             this.dgProfessors.Name = "dgProfessors";
             this.dgProfessors.ReadOnly = true;
             this.dgProfessors.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -214,7 +215,7 @@
             // 
             this.lstClassrooms.DisplayMember = "Name";
             this.lstClassrooms.FormattingEnabled = true;
-            this.lstClassrooms.Location = new System.Drawing.Point(450, 63);
+            this.lstClassrooms.Location = new System.Drawing.Point(487, 72);
             this.lstClassrooms.Name = "lstClassrooms";
             this.lstClassrooms.Size = new System.Drawing.Size(162, 199);
             this.lstClassrooms.TabIndex = 4;
@@ -227,7 +228,7 @@
             this.lblLoadingSchedule.AutoSize = true;
             this.lblLoadingSchedule.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLoadingSchedule.ForeColor = System.Drawing.Color.Red;
-            this.lblLoadingSchedule.Location = new System.Drawing.Point(126, 316);
+            this.lblLoadingSchedule.Location = new System.Drawing.Point(163, 325);
             this.lblLoadingSchedule.Name = "lblLoadingSchedule";
             this.lblLoadingSchedule.Size = new System.Drawing.Size(199, 13);
             this.lblLoadingSchedule.TabIndex = 5;
@@ -238,7 +239,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(27, 42);
+            this.label1.Location = new System.Drawing.Point(64, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 6;
@@ -248,7 +249,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(447, 42);
+            this.label2.Location = new System.Drawing.Point(484, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 7;
@@ -258,7 +259,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(27, 316);
+            this.label3.Location = new System.Drawing.Point(64, 325);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(76, 13);
             this.label3.TabIndex = 8;
@@ -268,7 +269,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(450, 265);
+            this.label4.Location = new System.Drawing.Point(487, 274);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(172, 13);
             this.label4.TabIndex = 9;
@@ -278,7 +279,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(450, 282);
+            this.label5.Location = new System.Drawing.Point(487, 291);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(90, 13);
             this.label5.TabIndex = 10;
@@ -288,7 +289,7 @@
             // 
             this.btnSaveSchedule.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnSaveSchedule.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveSchedule.Location = new System.Drawing.Point(635, 337);
+            this.btnSaveSchedule.Location = new System.Drawing.Point(672, 346);
             this.btnSaveSchedule.Name = "btnSaveSchedule";
             this.btnSaveSchedule.Size = new System.Drawing.Size(159, 122);
             this.btnSaveSchedule.TabIndex = 11;
@@ -300,7 +301,7 @@
             // 
             this.loading.BackColor = System.Drawing.Color.Transparent;
             this.loading.Image = global::WeekClassSchedule.Properties.Resources.ajax_loader;
-            this.loading.Location = new System.Drawing.Point(285, 422);
+            this.loading.Location = new System.Drawing.Point(327, 418);
             this.loading.Name = "loading";
             this.loading.Size = new System.Drawing.Size(68, 70);
             this.loading.TabIndex = 12;
@@ -311,20 +312,31 @@
             // 
             this.lblScheduleSaved.AutoSize = true;
             this.lblScheduleSaved.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScheduleSaved.Location = new System.Drawing.Point(638, 466);
+            this.lblScheduleSaved.Location = new System.Drawing.Point(675, 475);
             this.lblScheduleSaved.Name = "lblScheduleSaved";
             this.lblScheduleSaved.Size = new System.Drawing.Size(105, 13);
             this.lblScheduleSaved.TabIndex = 13;
             this.lblScheduleSaved.Text = "Programação salva.";
             this.lblScheduleSaved.Visible = false;
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackColor = System.Drawing.Color.LightGray;
+            this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Location = new System.Drawing.Point(672, 107);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(159, 122);
+            this.btnRefresh.TabIndex = 14;
+            this.btnRefresh.Text = "Atualizar";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // FrmWeekClassSchedule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(819, 645);
+            this.ClientSize = new System.Drawing.Size(877, 644);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.lblScheduleSaved);
             this.Controls.Add(this.loading);
             this.Controls.Add(this.btnSaveSchedule);
@@ -339,7 +351,6 @@
             this.Controls.Add(this.dgProfessors);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmWeekClassSchedule";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Text = "WeekClassSchedule";
             this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -378,6 +389,7 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn Sexta;
         private System.Windows.Forms.PictureBox loading;
         private System.Windows.Forms.Label lblScheduleSaved;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
 

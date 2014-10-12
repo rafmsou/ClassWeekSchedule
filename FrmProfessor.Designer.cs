@@ -36,6 +36,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.loading = new System.Windows.Forms.PictureBox();
             this.cbAll = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -52,7 +53,6 @@
             this.lblMessage = new System.Windows.Forms.Label();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
-            this.loading = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loading)).BeginInit();
             this.SuspendLayout();
@@ -79,7 +79,7 @@
             // 
             this.txtWeekClassesQty.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtWeekClassesQty.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWeekClassesQty.Location = new System.Drawing.Point(306, 217);
+            this.txtWeekClassesQty.Location = new System.Drawing.Point(389, 203);
             this.txtWeekClassesQty.Name = "txtWeekClassesQty";
             this.txtWeekClassesQty.Size = new System.Drawing.Size(138, 18);
             this.txtWeekClassesQty.TabIndex = 2;
@@ -115,7 +115,7 @@
             // 
             this.btnSalvar.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnSalvar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvar.Location = new System.Drawing.Point(538, 490);
+            this.btnSalvar.Location = new System.Drawing.Point(621, 476);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(103, 39);
             this.btnSalvar.TabIndex = 6;
@@ -146,10 +146,21 @@
             this.panel1.Controls.Add(this.tercaCheckList);
             this.panel1.Controls.Add(this.segundaCheckList);
             this.panel1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(74, 131);
+            this.panel1.Location = new System.Drawing.Point(157, 117);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(545, 296);
             this.panel1.TabIndex = 10;
+            // 
+            // loading
+            // 
+            this.loading.BackColor = System.Drawing.Color.Transparent;
+            this.loading.Image = global::WeekClassSchedule.Properties.Resources.ajax_loader;
+            this.loading.Location = new System.Drawing.Point(232, 107);
+            this.loading.Name = "loading";
+            this.loading.Size = new System.Drawing.Size(68, 70);
+            this.loading.TabIndex = 16;
+            this.loading.TabStop = false;
+            this.loading.Visible = false;
             // 
             // cbAll
             // 
@@ -311,7 +322,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(312, 97);
+            this.label10.Location = new System.Drawing.Point(395, 83);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(81, 21);
             this.label10.TabIndex = 12;
@@ -321,7 +332,7 @@
             // 
             this.lblMessage.AutoSize = true;
             this.lblMessage.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage.Location = new System.Drawing.Point(232, 440);
+            this.lblMessage.Location = new System.Drawing.Point(315, 426);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(246, 13);
             this.lblMessage.TabIndex = 13;
@@ -333,7 +344,7 @@
             this.btnExcluir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnExcluir.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExcluir.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnExcluir.Location = new System.Drawing.Point(429, 490);
+            this.btnExcluir.Location = new System.Drawing.Point(512, 476);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(103, 39);
             this.btnExcluir.TabIndex = 14;
@@ -346,7 +357,7 @@
             // 
             this.btnNew.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnNew.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNew.Location = new System.Drawing.Point(64, 490);
+            this.btnNew.Location = new System.Drawing.Point(147, 476);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(103, 39);
             this.btnNew.TabIndex = 15;
@@ -355,24 +366,13 @@
             this.btnNew.UseVisualStyleBackColor = false;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
-            // loading
-            // 
-            this.loading.BackColor = System.Drawing.Color.Transparent;
-            this.loading.Image = global::WeekClassSchedule.Properties.Resources.ajax_loader;
-            this.loading.Location = new System.Drawing.Point(232, 107);
-            this.loading.Name = "loading";
-            this.loading.Size = new System.Drawing.Size(68, 70);
-            this.loading.TabIndex = 16;
-            this.loading.TabStop = false;
-            this.loading.Visible = false;
-            // 
             // FrmProfessor
             // 
             this.AcceptButton = this.btnSalvar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(714, 623);
+            this.ClientSize = new System.Drawing.Size(880, 630);
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.lblMessage);

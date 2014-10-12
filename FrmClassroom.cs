@@ -50,14 +50,14 @@ namespace WeekClassSchedule
             btnSave.Enabled = false;
             loading.Visible = true;
 
+            this.Height = this.MdiParent.Height;
+            this.Width = this.MdiParent.Width;
+
             var classrooms = await _classroomDatalayer.GetClassroomListAsync();
             btnSave.Enabled = true;
             dgClassrooms.AutoGenerateColumns = false;
             dgClassrooms.DataSource = classrooms;
             _classroomDatalayer.ClassroomList = classrooms;
-
-            this.Height = this.MdiParent.Height;
-            this.Width = this.MdiParent.Width;
 
             loading.Visible = false;
         }

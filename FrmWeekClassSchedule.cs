@@ -57,6 +57,8 @@ namespace WeekClassSchedule
                 var frmProfessor = new FrmProfessor(professorId);
                 frmProfessor.MdiParent = this.MdiParent;
                 frmProfessor.Show();
+
+                this.Close();
             }
         }
 
@@ -74,11 +76,17 @@ namespace WeekClassSchedule
                 foreach (DataGridViewComboBoxCell cell in dgClassSchedule.Rows[i].Cells.OfType<DataGridViewComboBoxCell>())
                 {
                     weekDay++;
-
                     var filteredProfessors = _professorDatalayer.GetForScheduling((DayOfWeek)weekDay, classNumber, Convert.ToInt32(lstClassrooms.SelectedValue));
 
                     if (!filteredProfessors.Any(p => p.Id == 0))
                         filteredProfessors.Add(new Professor() { Id = 0, Name = "Vaga" });
+
+                    var currentValue = Convert.ToInt32(cell.Value);
+                    if (!filteredProfessors.Any(p => p.Id == currentValue))
+                    {
+                        var currentProfessor = _professorsList.Where(p => p.Id == currentValue).Single();
+                        filteredProfessors.Add(currentProfessor);
+                    }
 
                     cell.DataSource = filteredProfessors;
                     cell.DisplayMember = "Name";
@@ -185,6 +193,15 @@ namespace WeekClassSchedule
         private void dgProfessors_Click(object sender, EventArgs e)
         {
             lblScheduleSaved.Visible = false;
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            var frmWeekClassSchedule = new FrmWeekClassSchedule();
+            frmWeekClassSchedule.MdiParent = this.MdiParent;
+            frmWeekClassSchedule.Show();
+
+            this.Close();
         }
     }
 }

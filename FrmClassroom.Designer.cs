@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.loading = new System.Windows.Forms.PictureBox();
             this.dgClassrooms = new System.Windows.Forms.DataGridView();
             this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumberOfClassesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,11 +47,10 @@
             this.lblDone = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.loading = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loading)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgClassrooms)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.loading)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -105,24 +105,35 @@
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtName);
-            this.panel1.Location = new System.Drawing.Point(30, 46);
+            this.panel1.Location = new System.Drawing.Point(166, 92);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(275, 417);
             this.panel1.TabIndex = 4;
+            // 
+            // loading
+            // 
+            this.loading.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.loading.Image = global::WeekClassSchedule.Properties.Resources.ajax_loader;
+            this.loading.Location = new System.Drawing.Point(102, 261);
+            this.loading.Name = "loading";
+            this.loading.Size = new System.Drawing.Size(68, 70);
+            this.loading.TabIndex = 8;
+            this.loading.TabStop = false;
+            this.loading.Visible = false;
             // 
             // dgClassrooms
             // 
             this.dgClassrooms.AllowUserToAddRows = false;
             this.dgClassrooms.AllowUserToDeleteRows = false;
             this.dgClassrooms.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgClassrooms.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgClassrooms.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.dgClassrooms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgClassrooms.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NameColumn,
@@ -132,14 +143,14 @@
             this.dgClassrooms.Margin = new System.Windows.Forms.Padding(0);
             this.dgClassrooms.Name = "dgClassrooms";
             this.dgClassrooms.ReadOnly = true;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgClassrooms.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgClassrooms.RowHeadersDefaultCellStyle = dataGridViewCellStyle21;
             this.dgClassrooms.RowHeadersWidth = 25;
             this.dgClassrooms.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgClassrooms.Size = new System.Drawing.Size(266, 221);
@@ -149,8 +160,8 @@
             // NameColumn
             // 
             this.NameColumn.DataPropertyName = "Name";
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameColumn.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NameColumn.DefaultCellStyle = dataGridViewCellStyle20;
             this.NameColumn.HeaderText = "Nome";
             this.NameColumn.Name = "NameColumn";
             this.NameColumn.ReadOnly = true;
@@ -225,7 +236,7 @@
             this.panel2.Controls.Add(this.lblDone);
             this.panel2.Controls.Add(this.btnGenerateSchedule);
             this.panel2.Controls.Add(this.lblGeneratingSchedule);
-            this.panel2.Location = new System.Drawing.Point(311, 46);
+            this.panel2.Location = new System.Drawing.Point(447, 92);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(248, 417);
             this.panel2.TabIndex = 7;
@@ -241,37 +252,27 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Programação";
             // 
-            // loading
-            // 
-            this.loading.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.loading.Image = global::WeekClassSchedule.Properties.Resources.ajax_loader;
-            this.loading.Location = new System.Drawing.Point(102, 261);
-            this.loading.Name = "loading";
-            this.loading.Size = new System.Drawing.Size(68, 70);
-            this.loading.TabIndex = 8;
-            this.loading.TabStop = false;
-            this.loading.Visible = false;
-            // 
             // FrmClassroom
             // 
             this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(602, 540);
+            this.ClientSize = new System.Drawing.Size(880, 630);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmClassroom";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sala de Aula";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmClassroom_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loading)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgClassrooms)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.loading)).EndInit();
             this.ResumeLayout(false);
 
         }
