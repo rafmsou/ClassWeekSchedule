@@ -4,63 +4,41 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="WeekClassScheduleModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="WeekClassScheduleModelStoreContainer">
-          <EntitySet Name="AttendanceRules" EntityType="WeekClassScheduleModel.Store.AttendanceRules" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Classroom" EntityType="WeekClassScheduleModel.Store.Classroom" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ClassroomClasses" EntityType="WeekClassScheduleModel.Store.ClassroomClasses" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Professor" EntityType="WeekClassScheduleModel.Store.Professor" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="WeekSchedule" EntityType="WeekClassScheduleModel.Store.WeekSchedule" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="vWeeklyScheduleByClass" EntityType="WeekClassScheduleModel.Store.vWeeklyScheduleByClass" store:Type="Views" store:Schema="dbo" store:Name="vWeeklyScheduleByClass">
-            <DefiningQuery>SELECT 
-      [vWeeklyScheduleByClass].[ClassroomId] AS [ClassroomId], 
-      [vWeeklyScheduleByClass].[ClassNumber] AS [ClassNumber], 
-      [vWeeklyScheduleByClass].[Monday] AS [Monday], 
-      [vWeeklyScheduleByClass].[Tuesday] AS [Tuesday], 
-      [vWeeklyScheduleByClass].[Wednesday] AS [Wednesday], 
-      [vWeeklyScheduleByClass].[Thursday] AS [Thursday], 
-      [vWeeklyScheduleByClass].[Friday] AS [Friday]
-      FROM [dbo].[vWeeklyScheduleByClass] AS [vWeeklyScheduleByClass]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK_ATTENDANCE_RULES_PROFESSOR" Association="WeekClassScheduleModel.Store.FK_ATTENDANCE_RULES_PROFESSOR">
-            <End Role="Professor" EntitySet="Professor" />
-            <End Role="AttendanceRules" EntitySet="AttendanceRules" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="WeekClassSchedule.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="ISO8601" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AttendanceRules">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="ProfessorId" Type="int" Nullable="false" />
-          <Property Name="DayOfWeek" Type="int" Nullable="false" />
-          <Property Name="ClassNumber" Type="int" Nullable="false" />
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProfessorId" Type="integer" Nullable="false" />
+          <Property Name="DayOfWeek" Type="integer" Nullable="false" />
+          <Property Name="ClassNumber" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="Classroom">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="NumberOfClasses" Type="smallint" Nullable="false" />
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="NumberOfClasses" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="ClassroomClasses">
           <Key>
             <PropertyRef Name="ClassromId" />
             <PropertyRef Name="ClassNumber" />
           </Key>
-          <Property Name="ClassromId" Type="int" Nullable="false" />
-          <Property Name="ClassNumber" Type="int" Nullable="false" />
+          <Property Name="ClassromId" Type="integer" Nullable="false" />
+          <Property Name="ClassNumber" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="Professor">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="250" />
-          <Property Name="Subject" Type="varchar" Nullable="false" MaxLength="250" />
-          <Property Name="NumberOfClassesWeek" Type="int" Nullable="false" />
-          <Property Name="NumberOfRemainingClasses" Type="int" Nullable="false" />
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Subject" Type="varchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="NumberOfClassesWeek" Type="integer" Nullable="false" />
+          <Property Name="NumberOfRemainingClasses" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="WeekSchedule">
           <Key>
@@ -68,30 +46,29 @@
             <PropertyRef Name="ClassNumber" />
             <PropertyRef Name="WeekDay" />
           </Key>
-          <Property Name="ClassroomId" Type="smallint" Nullable="false" />
-          <Property Name="ClassNumber" Type="smallint" Nullable="false" />
-          <Property Name="WeekDay" Type="smallint" Nullable="false" />
-          <Property Name="ProfessorId" Type="int" Nullable="false" />
+          <Property Name="ClassroomId" Type="integer" Nullable="false" />
+          <Property Name="ClassNumber" Type="integer" Nullable="false" />
+          <Property Name="WeekDay" Type="integer" Nullable="false" />
+          <Property Name="ProfessorId" Type="integer" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'C:\USERS\RAFAEL\GOOGLE DRIVE\WEEKSCHEDULEAPP\WEEKSCHEDULE\APPDB\WEEKCLASSSCHEDULE.MDF.dbo.vWeeklyScheduleByClass' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
+warning 6002: The table/view 'main.vWeeklyScheduleByClass' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vWeeklyScheduleByClass">
           <Key>
             <PropertyRef Name="ClassroomId" />
             <PropertyRef Name="ClassNumber" />
           </Key>
-          <Property Name="ClassroomId" Type="int" Nullable="false" />
-          <Property Name="ClassNumber" Type="int" Nullable="false" />
-          <Property Name="Monday" Type="int" />
-          <Property Name="Tuesday" Type="int" />
-          <Property Name="Wednesday" Type="int" />
-          <Property Name="Thursday" Type="int" />
-          <Property Name="Friday" Type="int" />
+          <Property Name="ClassroomId" Type="integer" Nullable="false" />
+          <Property Name="ClassNumber" Type="integer" Nullable="false" />
+          <Property Name="Monday" Type="integer" Nullable="false" />
+          <Property Name="Tuesday" Type="integer" Nullable="false" />
+          <Property Name="Wednesday" Type="integer" Nullable="false" />
+          <Property Name="Thursday" Type="integer" Nullable="false" />
+          <Property Name="Friday" Type="integer" Nullable="false" />
         </EntityType>
-        <Association Name="FK_ATTENDANCE_RULES_PROFESSOR">
-          <End Role="Professor" Type="WeekClassScheduleModel.Store.Professor" Multiplicity="1" />
-          <End Role="AttendanceRules" Type="WeekClassScheduleModel.Store.AttendanceRules" Multiplicity="*" />
+        <Association Name="FK_AttendanceRules_0_0">
+          <End Role="Professor" Type="Self.Professor" Multiplicity="1" />
+          <End Role="AttendanceRules" Type="Self.AttendanceRules" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Professor">
               <PropertyRef Name="Id" />
@@ -101,62 +78,152 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ClassroomClasses_0_0">
+          <End Role="Classroom" Type="Self.Classroom" Multiplicity="1" />
+          <End Role="ClassroomClasses" Type="Self.ClassroomClasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classroom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClassroomClasses">
+              <PropertyRef Name="ClassromId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WeekSchedule_0_0">
+          <End Role="Professor" Type="Self.Professor" Multiplicity="1" />
+          <End Role="WeekSchedule" Type="Self.WeekSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Professor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WeekSchedule">
+              <PropertyRef Name="ProfessorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WeekSchedule_1_0">
+          <End Role="Classroom" Type="Self.Classroom" Multiplicity="1" />
+          <End Role="WeekSchedule" Type="Self.WeekSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classroom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WeekSchedule">
+              <PropertyRef Name="ClassroomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WeekClassScheduleStoreContainer">
+          <EntitySet Name="AttendanceRules" EntityType="Self.AttendanceRules" store:Type="Tables" />
+          <EntitySet Name="Classroom" EntityType="Self.Classroom" store:Type="Tables" />
+          <EntitySet Name="ClassroomClasses" EntityType="Self.ClassroomClasses" store:Type="Tables" />
+          <EntitySet Name="Professor" EntityType="Self.Professor" store:Type="Tables" />
+          <EntitySet Name="WeekSchedule" EntityType="Self.WeekSchedule" store:Type="Tables" />
+          <EntitySet Name="vWeeklyScheduleByClass" EntityType="Self.vWeeklyScheduleByClass" store:Type="Views">
+            <DefiningQuery>SELECT 
+[vWeeklyScheduleByClass].[ClassroomId] AS [ClassroomId], 
+[vWeeklyScheduleByClass].[ClassNumber] AS [ClassNumber], 
+[vWeeklyScheduleByClass].[Monday] AS [Monday], 
+[vWeeklyScheduleByClass].[Tuesday] AS [Tuesday], 
+[vWeeklyScheduleByClass].[Wednesday] AS [Wednesday], 
+[vWeeklyScheduleByClass].[Thursday] AS [Thursday], 
+[vWeeklyScheduleByClass].[Friday] AS [Friday]
+FROM [vWeeklyScheduleByClass] AS [vWeeklyScheduleByClass]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_AttendanceRules_0_0" Association="Self.FK_AttendanceRules_0_0">
+            <End Role="Professor" EntitySet="Professor" />
+            <End Role="AttendanceRules" EntitySet="AttendanceRules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClassroomClasses_0_0" Association="Self.FK_ClassroomClasses_0_0">
+            <End Role="Classroom" EntitySet="Classroom" />
+            <End Role="ClassroomClasses" EntitySet="ClassroomClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WeekSchedule_0_0" Association="Self.FK_WeekSchedule_0_0">
+            <End Role="Professor" EntitySet="Professor" />
+            <End Role="WeekSchedule" EntitySet="WeekSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WeekSchedule_1_0" Association="Self.FK_WeekSchedule_1_0">
+            <End Role="Classroom" EntitySet="Classroom" />
+            <End Role="WeekSchedule" EntitySet="WeekSchedule" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="WeekClassScheduleModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="WeekClassScheduleEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="AttendanceRules" EntityType="WeekClassScheduleModel.AttendanceRules" />
-          <EntitySet Name="Classroom" EntityType="WeekClassScheduleModel.Classroom" />
-          <EntitySet Name="ClassroomClasses" EntityType="WeekClassScheduleModel.ClassroomClasses" />
-          <EntitySet Name="Professor" EntityType="WeekClassScheduleModel.Professor" />
-          <AssociationSet Name="FK_ATTENDANCE_RULES_PROFESSOR" Association="WeekClassScheduleModel.FK_ATTENDANCE_RULES_PROFESSOR">
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="WeekClassSchedule" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="WeekClassScheduleContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AttendanceRules" EntityType="WeekClassSchedule.AttendanceRules" />
+          <EntitySet Name="Classroom" EntityType="WeekClassSchedule.Classroom" />
+          <EntitySet Name="Professor" EntityType="WeekClassSchedule.Professor" />
+          <EntitySet Name="vWeeklyScheduleByClass" EntityType="WeekClassSchedule.vWeeklyScheduleByClass" />
+          <AssociationSet Name="FK_AttendanceRules_0_0" Association="WeekClassSchedule.FK_AttendanceRules_0_0">
             <End Role="Professor" EntitySet="Professor" />
             <End Role="AttendanceRules" EntitySet="AttendanceRules" />
           </AssociationSet>
-          <EntitySet Name="WeekSchedule" EntityType="WeekClassScheduleModel.WeekSchedule" />
-          <EntitySet Name="vWeeklyScheduleByClass" EntityType="WeekClassScheduleModel.vWeeklyScheduleByClass" />
+          <EntitySet Name="ClassroomClasses" EntityType="WeekClassSchedule.ClassroomClasses" />
+          <AssociationSet Name="FK_ClassroomClasses_0_0" Association="WeekClassSchedule.FK_ClassroomClasses_0_0">
+            <End Role="Classroom" EntitySet="Classroom" />
+            <End Role="ClassroomClasses" EntitySet="ClassroomClasses" />
+          </AssociationSet>
+          <EntitySet Name="WeekSchedule" EntityType="WeekClassSchedule.WeekSchedule" />
+          <AssociationSet Name="FK_WeekSchedule_1_0" Association="WeekClassSchedule.FK_WeekSchedule_1_0">
+            <End Role="Classroom" EntitySet="Classroom" />
+            <End Role="WeekSchedule" EntitySet="WeekSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WeekSchedule_0_0" Association="WeekClassSchedule.FK_WeekSchedule_0_0">
+            <End Role="Professor" EntitySet="Professor" />
+            <End Role="WeekSchedule" EntitySet="WeekSchedule" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AttendanceRules">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="ProfessorId" Type="Int32" Nullable="false" />
-          <Property Name="DayOfWeek" Type="Int32" Nullable="false" />
-          <Property Name="ClassNumber" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Professor" Relationship="WeekClassScheduleModel.FK_ATTENDANCE_RULES_PROFESSOR" FromRole="AttendanceRules" ToRole="Professor" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProfessorId" Type="Int64" Nullable="false" />
+          <Property Name="DayOfWeek" Type="Int64" Nullable="false" />
+          <Property Name="ClassNumber" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Professor" Relationship="WeekClassSchedule.FK_AttendanceRules_0_0" FromRole="AttendanceRules" ToRole="Professor" />
         </EntityType>
         <EntityType Name="Classroom">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Type="Int16" Name="NumberOfClasses" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ClassroomClasses">
-          <Key>
-            <PropertyRef Name="ClassromId" />
-            <PropertyRef Name="ClassNumber" />
-          </Key>
-          <Property Name="ClassromId" Type="Int32" Nullable="false" />
-          <Property Name="ClassNumber" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="NumberOfClasses" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ClassroomClasses" Relationship="WeekClassSchedule.FK_ClassroomClasses_0_0" FromRole="Classroom" ToRole="ClassroomClasses" />
+          <NavigationProperty Name="WeekSchedule" Relationship="WeekClassSchedule.FK_WeekSchedule_1_0" FromRole="Classroom" ToRole="WeekSchedule" />
         </EntityType>
         <EntityType Name="Professor">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
-          <Property Name="Subject" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
-          <Property Name="NumberOfClassesWeek" Type="Int32" Nullable="false" />
-          <Property Name="NumberOfRemainingClasses" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AttendanceRules" Relationship="WeekClassScheduleModel.FK_ATTENDANCE_RULES_PROFESSOR" FromRole="Professor" ToRole="AttendanceRules" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Name="NumberOfClassesWeek" Type="Int64" Nullable="false" />
+          <Property Name="NumberOfRemainingClasses" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="AttendanceRules" Relationship="WeekClassSchedule.FK_AttendanceRules_0_0" FromRole="Professor" ToRole="AttendanceRules" />
+          <NavigationProperty Name="WeekSchedule" Relationship="WeekClassSchedule.FK_WeekSchedule_0_0" FromRole="Professor" ToRole="WeekSchedule" />
         </EntityType>
-        <Association Name="FK_ATTENDANCE_RULES_PROFESSOR">
-          <End Role="Professor" Type="WeekClassScheduleModel.Professor" Multiplicity="1" />
-          <End Role="AttendanceRules" Type="WeekClassScheduleModel.AttendanceRules" Multiplicity="*" />
+        <EntityType Name="vWeeklyScheduleByClass">
+          <Key>
+            <PropertyRef Name="ClassroomId" />
+            <PropertyRef Name="ClassNumber" />
+          </Key>
+          <Property Name="ClassroomId" Type="Int64" Nullable="false" />
+          <Property Name="ClassNumber" Type="Int64" Nullable="false" />
+          <Property Name="Monday" Type="Int64" Nullable="false" />
+          <Property Name="Tuesday" Type="Int64" Nullable="false" />
+          <Property Name="Wednesday" Type="Int64" Nullable="false" />
+          <Property Name="Thursday" Type="Int64" Nullable="false" />
+          <Property Name="Friday" Type="Int64" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AttendanceRules_0_0">
+          <End Type="WeekClassSchedule.Professor" Role="Professor" Multiplicity="1" />
+          <End Type="WeekClassSchedule.AttendanceRules" Role="AttendanceRules" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Professor">
               <PropertyRef Name="Id" />
@@ -166,92 +233,128 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ClassroomClasses">
+          <Key>
+            <PropertyRef Name="ClassromId" />
+            <PropertyRef Name="ClassNumber" />
+          </Key>
+          <Property Name="ClassromId" Type="Int64" Nullable="false" />
+          <Property Name="ClassNumber" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Classroom" Relationship="WeekClassSchedule.FK_ClassroomClasses_0_0" FromRole="ClassroomClasses" ToRole="Classroom" />
+        </EntityType>
+        <Association Name="FK_ClassroomClasses_0_0">
+          <End Type="WeekClassSchedule.Classroom" Role="Classroom" Multiplicity="1" />
+          <End Type="WeekClassSchedule.ClassroomClasses" Role="ClassroomClasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classroom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClassroomClasses">
+              <PropertyRef Name="ClassromId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="WeekSchedule">
           <Key>
             <PropertyRef Name="ClassroomId" />
             <PropertyRef Name="ClassNumber" />
             <PropertyRef Name="WeekDay" />
           </Key>
-          <Property Type="Int16" Name="ClassroomId" Nullable="false" />
-          <Property Type="Int16" Name="ClassNumber" Nullable="false" />
-          <Property Type="Int16" Name="WeekDay" Nullable="false" />
-          <Property Type="Int32" Name="ProfessorId" Nullable="false" />
+          <Property Name="ClassroomId" Type="Int64" Nullable="false" />
+          <Property Name="ClassNumber" Type="Int64" Nullable="false" />
+          <Property Name="WeekDay" Type="Int64" Nullable="false" />
+          <Property Name="ProfessorId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Classroom" Relationship="WeekClassSchedule.FK_WeekSchedule_1_0" FromRole="WeekSchedule" ToRole="Classroom" />
+          <NavigationProperty Name="Professor" Relationship="WeekClassSchedule.FK_WeekSchedule_0_0" FromRole="WeekSchedule" ToRole="Professor" />
         </EntityType>
-        <EntityType Name="vWeeklyScheduleByClass">
-          <Key>
-            <PropertyRef Name="ClassroomId" />
-            <PropertyRef Name="ClassNumber" />
-          </Key>
-          <Property Type="Int32" Name="ClassroomId" Nullable="false" />
-          <Property Type="Int32" Name="ClassNumber" Nullable="false" />
-          <Property Type="Int32" Name="Monday" />
-          <Property Type="Int32" Name="Tuesday" />
-          <Property Type="Int32" Name="Wednesday" />
-          <Property Type="Int32" Name="Thursday" />
-          <Property Type="Int32" Name="Friday" />
-        </EntityType>
+        <Association Name="FK_WeekSchedule_1_0">
+          <End Type="WeekClassSchedule.Classroom" Role="Classroom" Multiplicity="1" />
+          <End Type="WeekClassSchedule.WeekSchedule" Role="WeekSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classroom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WeekSchedule">
+              <PropertyRef Name="ClassroomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WeekSchedule_0_0">
+          <End Type="WeekClassSchedule.Professor" Role="Professor" Multiplicity="1" />
+          <End Type="WeekClassSchedule.WeekSchedule" Role="WeekSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Professor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WeekSchedule">
+              <PropertyRef Name="ProfessorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WeekClassScheduleModelStoreContainer" CdmEntityContainer="WeekClassScheduleEntities">
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="WeekClassSchedule" />
+        <Alias Key="Target" Value="WeekClassSchedule.Store" />
+        <EntityContainerMapping CdmEntityContainer="WeekClassScheduleContainer" StorageEntityContainer="WeekClassScheduleStoreContainer">
           <EntitySetMapping Name="AttendanceRules">
-            <EntityTypeMapping TypeName="WeekClassScheduleModel.AttendanceRules">
+            <EntityTypeMapping TypeName="WeekClassSchedule.AttendanceRules">
               <MappingFragment StoreEntitySet="AttendanceRules">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
-                <ScalarProperty Name="DayOfWeek" ColumnName="DayOfWeek" />
                 <ScalarProperty Name="ClassNumber" ColumnName="ClassNumber" />
+                <ScalarProperty Name="DayOfWeek" ColumnName="DayOfWeek" />
+                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Classroom">
-            <EntityTypeMapping TypeName="WeekClassScheduleModel.Classroom">
+            <EntityTypeMapping TypeName="WeekClassSchedule.Classroom">
               <MappingFragment StoreEntitySet="Classroom">
                 <ScalarProperty Name="NumberOfClasses" ColumnName="NumberOfClasses" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ClassroomClasses">
-            <EntityTypeMapping TypeName="WeekClassScheduleModel.ClassroomClasses">
-              <MappingFragment StoreEntitySet="ClassroomClasses">
-                <ScalarProperty Name="ClassromId" ColumnName="ClassromId" />
-                <ScalarProperty Name="ClassNumber" ColumnName="ClassNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Professor">
-            <EntityTypeMapping TypeName="WeekClassScheduleModel.Professor">
+            <EntityTypeMapping TypeName="WeekClassSchedule.Professor">
               <MappingFragment StoreEntitySet="Professor">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Subject" ColumnName="Subject" />
-                <ScalarProperty Name="NumberOfClassesWeek" ColumnName="NumberOfClassesWeek" />
                 <ScalarProperty Name="NumberOfRemainingClasses" ColumnName="NumberOfRemainingClasses" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="WeekSchedule">
-            <EntityTypeMapping TypeName="WeekClassScheduleModel.WeekSchedule">
-              <MappingFragment StoreEntitySet="WeekSchedule">
-                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
-                <ScalarProperty Name="WeekDay" ColumnName="WeekDay" />
-                <ScalarProperty Name="ClassNumber" ColumnName="ClassNumber" />
-                <ScalarProperty Name="ClassroomId" ColumnName="ClassroomId" />
+                <ScalarProperty Name="NumberOfClassesWeek" ColumnName="NumberOfClassesWeek" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="vWeeklyScheduleByClass">
-            <EntityTypeMapping TypeName="WeekClassScheduleModel.vWeeklyScheduleByClass">
+            <EntityTypeMapping TypeName="WeekClassSchedule.vWeeklyScheduleByClass">
               <MappingFragment StoreEntitySet="vWeeklyScheduleByClass">
                 <ScalarProperty Name="Friday" ColumnName="Friday" />
                 <ScalarProperty Name="Thursday" ColumnName="Thursday" />
                 <ScalarProperty Name="Wednesday" ColumnName="Wednesday" />
                 <ScalarProperty Name="Tuesday" ColumnName="Tuesday" />
                 <ScalarProperty Name="Monday" ColumnName="Monday" />
+                <ScalarProperty Name="ClassNumber" ColumnName="ClassNumber" />
+                <ScalarProperty Name="ClassroomId" ColumnName="ClassroomId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassroomClasses">
+            <EntityTypeMapping TypeName="WeekClassSchedule.ClassroomClasses">
+              <MappingFragment StoreEntitySet="ClassroomClasses">
+                <ScalarProperty Name="ClassNumber" ColumnName="ClassNumber" />
+                <ScalarProperty Name="ClassromId" ColumnName="ClassromId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeekSchedule">
+            <EntityTypeMapping TypeName="WeekClassSchedule.WeekSchedule">
+              <MappingFragment StoreEntitySet="WeekSchedule">
+                <ScalarProperty Name="ProfessorId" ColumnName="ProfessorId" />
+                <ScalarProperty Name="WeekDay" ColumnName="WeekDay" />
                 <ScalarProperty Name="ClassNumber" ColumnName="ClassNumber" />
                 <ScalarProperty Name="ClassroomId" ColumnName="ClassroomId" />
               </MappingFragment>
@@ -271,8 +374,9 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

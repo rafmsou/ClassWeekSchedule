@@ -16,7 +16,7 @@ namespace WeekClassSchedule
     {
         private List<KeyValuePair<DayOfWeek, int>> WeekAttendanceDict;
         private ProfessorDatalayer _professorDatalayer;
-        private int _professorId = 0;
+        private long _professorId = 0;
 
         public FrmProfessor()
         {
@@ -27,7 +27,7 @@ namespace WeekClassSchedule
             this.btnExcluir.Visible = false;
         }
 
-        public FrmProfessor(int professorId)
+        public FrmProfessor(long professorId)
         {
             InitializeComponent();
             WeekAttendanceDict = new List<KeyValuePair<DayOfWeek, int>>();

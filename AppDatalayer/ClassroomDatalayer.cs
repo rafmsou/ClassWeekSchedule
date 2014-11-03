@@ -11,12 +11,12 @@ namespace WeekClassSchedule.AppDatalayer
 {
     public class ClassroomDatalayer
     {
-        private WeekClassScheduleEntities _entitiesDb;
+        private WeekClassScheduleContainer _entitiesDb;
         private List<Classroom> _classroomList;
 
         public ClassroomDatalayer()
         {
-           _entitiesDb = new WeekClassScheduleEntities();
+            _entitiesDb = new WeekClassScheduleContainer();
         }
 
         public List<Classroom> ClassroomList

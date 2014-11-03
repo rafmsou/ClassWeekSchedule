@@ -11,15 +11,15 @@ namespace WeekClassSchedule.AppDatalayer
 {
     public class ProfessorDatalayer
     {
-        private WeekClassScheduleEntities _entitiesDb;
+        private WeekClassScheduleContainer _entitiesDb;
         private List<Professor> _professorList;
 
         public ProfessorDatalayer()
         {
-           _entitiesDb = new WeekClassScheduleEntities();
+            _entitiesDb = new WeekClassScheduleContainer();
         }
 
-        public Professor GetById(int id)
+        public Professor GetById(long id)
         {
             return _entitiesDb.Professor.Single(p => p.Id == id);
         }
@@ -50,7 +50,7 @@ namespace WeekClassSchedule.AppDatalayer
             _entitiesDb.SaveChanges();
         }
 
-        public void Remove(int professorId)
+        public void Remove(long professorId)
         {
             var professor = this.GetById(professorId);
             _entitiesDb.Professor.Remove(professor);

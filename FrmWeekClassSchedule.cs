@@ -18,8 +18,8 @@ namespace WeekClassSchedule
 
         private List<Professor> _professorsList;
         private bool _scheduleIsModified = false;
-        private int _scheduleCellOldValue = 0;
-        private int _scheduleCellNewValue = 0;
+        private long _scheduleCellOldValue = 0;
+        private long _scheduleCellNewValue = 0;
 
 
         public FrmWeekClassSchedule()
@@ -50,7 +50,7 @@ namespace WeekClassSchedule
         private void dgProfessors_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var cell = dgProfessors[0, e.RowIndex];
-            var professorId = Convert.ToInt32(cell.Value);
+            var professorId = Convert.ToInt64(cell.Value);
 
             if (professorId > 0)
             {
@@ -90,7 +90,7 @@ namespace WeekClassSchedule
 
                     cell.DataSource = filteredProfessors;
                     cell.DisplayMember = "Name";
-                    cell.ValueType = typeof(int);
+                    cell.ValueType = typeof(long);
                     cell.ValueMember = "Id";
                 }
             }
@@ -134,7 +134,7 @@ namespace WeekClassSchedule
         {
             if (e.RowIndex > -1)
             {
-                var value = (int)dgClassSchedule[e.ColumnIndex, e.RowIndex].Value;
+                var value = (long)dgClassSchedule[e.ColumnIndex, e.RowIndex].Value;
                 this._scheduleCellOldValue = value;
 
                 if (value > 0)
@@ -153,7 +153,7 @@ namespace WeekClassSchedule
         {
             if (e.RowIndex > -1)
             {
-                var value = (int)dgClassSchedule[e.ColumnIndex, e.RowIndex].Value;
+                var value = (long)dgClassSchedule[e.ColumnIndex, e.RowIndex].Value;
                 this._scheduleCellNewValue = value;
 
                 if (value > 0)

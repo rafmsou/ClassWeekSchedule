@@ -11,11 +11,11 @@ namespace WeekClassSchedule.AppDatalayer
 {
     public class ScheduleDatalayer
     {
-        private WeekClassScheduleEntities _entitiesDb;
+        private WeekClassScheduleContainer _entitiesDb;
 
         public ScheduleDatalayer()
         {
-            this._entitiesDb = new WeekClassScheduleEntities();
+            this._entitiesDb = new WeekClassScheduleContainer();
         }
 
         public async Task<List<vWeeklyScheduleByClass>> AllSchedulesAsync()
@@ -25,11 +25,11 @@ namespace WeekClassSchedule.AppDatalayer
 
         public List<vWeeklyScheduleByClass> ScheduleViewByClass(int classroomId)
         {
-            _entitiesDb = new WeekClassScheduleEntities();
+            _entitiesDb = new WeekClassScheduleContainer();
             return _entitiesDb.vWeeklyScheduleByClass.Where(ws => ws.ClassroomId == classroomId).ToList();
         }
 
-        public List<WeekSchedule> WeekScheduleByClass(int classroomId)
+        public List<WeekSchedule> WeekScheduleByClass(long classroomId)
         {
             return _entitiesDb.WeekSchedule.Where(ws => ws.ClassroomId == classroomId).ToList();
         }
@@ -41,22 +41,22 @@ namespace WeekClassSchedule.AppDatalayer
 
             foreach (var item in schedulesView)
             {
-                var mondaySchedule = weekScheduleList.Where(w => w.ClassNumber == item.ClassNumber && w.WeekDay == (int)DayOfWeek.Monday).Single();
-                mondaySchedule.ProfessorId = item.Monday.Value;
+                var mondaySchedule = weekScheduleList.Where(w => w.ClassNumber == item.ClassNumber && w.WeekDay == (long)DayOfWeek.Monday).Single();
+                mondaySchedule.ProfessorId = item.Monday;
 
-                var tuesdaySchedule = weekScheduleList.Where(w => w.ClassNumber == item.ClassNumber && w.WeekDay == (int)DayOfWeek.Tuesday).Single();
-                tuesdaySchedule.ProfessorId = item.Tuesday.Value;
+                var tuesdaySchedule = weekScheduleList.Where(w => w.ClassNumber == item.ClassNumber && w.WeekDay == (long)DayOfWeek.Tuesday).Single();
+                tuesdaySchedule.ProfessorId = item.Tuesday;
 
-                var wednesdaySchedule = weekScheduleList.Where(w => w.ClassNumber == item.ClassNumber && w.WeekDay == (int)DayOfWeek.Wednesday).Single();
-                wednesdaySchedule.ProfessorId = item.Wednesday.Value;
+                var wednesdaySchedule = weekScheduleList.Where(w => w.ClassNumber == item.ClassNumber && w.WeekDay == (long)DayOfWeek.Wednesday).Single();
+                wednesdaySchedule.ProfessorId = item.Wednesday;
 
-                var thursdaySchedule = weekScheduleList.Where(w => w.ClassNumber == item.ClassNumber && w.WeekDay == (int)DayOfWeek.Thursday).Single();
-                thursdaySchedule.ProfessorId = item.Thursday.Value;
+                var thursdaySchedule = weekScheduleList.Where(w => w.ClassNumber == item.ClassNumber && w.WeekDay == (long)DayOfWeek.Thursday).Single();
+                thursdaySchedule.ProfessorId = item.Thursday;
 
-                var fridaySchedule = weekScheduleList.Where(w => w.ClassNumber == item.ClassNumber && w.WeekDay == (int)DayOfWeek.Friday).Single();
-                fridaySchedule.ProfessorId = item.Friday.Value;
+                var fridaySchedule = weekScheduleList.Where(w => w.ClassNumber == item.ClassNumber && w.WeekDay == (long)DayOfWeek.Friday).Single();
+                fridaySchedule.ProfessorId = item.Friday;
 
-                this._entitiesDb.Entry<vWeeklyScheduleByClass>(item).State = EntityState.Unchanged;
+                this._entitiesDb.Entry(item).State = EntityState.Detached;
             }
 
             await this._entitiesDb.SaveChangesAsync();
