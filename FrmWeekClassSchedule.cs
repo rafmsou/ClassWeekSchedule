@@ -49,17 +49,6 @@ namespace WeekClassSchedule
 
         private void dgProfessors_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            var cell = dgProfessors[0, e.RowIndex];
-            var professorId = Convert.ToInt64(cell.Value);
-
-            if (professorId > 0)
-            {
-                var frmProfessor = new FrmProfessor(professorId);
-                frmProfessor.MdiParent = this.MdiParent;
-                frmProfessor.Show();
-
-                this.Close();
-            }
         }
 
         private void dgSala1_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -102,11 +91,13 @@ namespace WeekClassSchedule
             loading.Visible = true;
 
             dgClassSchedule.DataSource = null;
-            dgClassSchedule.DataSource = _scheduleDatalayer.ScheduleViewByClass(Convert.ToInt32(lstClassrooms.SelectedValue));
+            dgClassSchedule.DataSource = _scheduleDatalayer.ScheduleViewByClass(Convert.ToInt64(lstClassrooms.SelectedValue));
 
             loading.Visible = false;
             lblLoadingSchedule.Visible = false;
             this.btnSaveSchedule.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+
+            lblClassroom.Text = lstClassrooms.Text;
         }
 
         private async void btnSaveSchedule_Click(object sender, EventArgs e)
@@ -202,6 +193,21 @@ namespace WeekClassSchedule
             frmWeekClassSchedule.Show();
 
             this.Close();
+        }
+
+        private void dgProfessors_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var cell = dgProfessors[0, e.RowIndex];
+            var professorId = Convert.ToInt64(cell.Value);
+
+            if (professorId > 0)
+            {
+                var frmProfessor = new FrmProfessor(professorId);
+                frmProfessor.MdiParent = this.MdiParent;
+                frmProfessor.Show();
+
+                this.Close();
+            }
         }
     }
 }

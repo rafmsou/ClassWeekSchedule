@@ -9,7 +9,7 @@ namespace WeekClassSchedule.Extensions
 {
     public static class ProfessorExtensions
     {
-        private static WeekClassScheduleContainer _entitiesDb = new WeekClassScheduleContainer();
+        private static WeekClassScheduleEntities _entitiesDb = new WeekClassScheduleEntities();
 
         public static bool HasSchedule(this Professor p, DayOfWeek weekDay, int classNumber, int classroomId)
         {

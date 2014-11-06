@@ -13,10 +13,10 @@ namespace WeekClassSchedule.AppData
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class WeekClassScheduleContainer : DbContext
+    public partial class WeekClassScheduleEntities : DbContext
     {
-        public WeekClassScheduleContainer()
-            : base("name=WeekClassScheduleContainer")
+        public WeekClassScheduleEntities()
+            : base("name=WeekClassScheduleEntities")
         {
         }
     
@@ -27,9 +27,9 @@ namespace WeekClassSchedule.AppData
     
         public virtual DbSet<AttendanceRules> AttendanceRules { get; set; }
         public virtual DbSet<Classroom> Classroom { get; set; }
+        public virtual DbSet<ClassroomClasses> ClassroomClasses { get; set; }
         public virtual DbSet<Professor> Professor { get; set; }
         public virtual DbSet<vWeeklyScheduleByClass> vWeeklyScheduleByClass { get; set; }
-        public virtual DbSet<ClassroomClasses> ClassroomClasses { get; set; }
         public virtual DbSet<WeekSchedule> WeekSchedule { get; set; }
     }
 }

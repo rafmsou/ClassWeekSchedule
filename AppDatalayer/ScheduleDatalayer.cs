@@ -11,11 +11,11 @@ namespace WeekClassSchedule.AppDatalayer
 {
     public class ScheduleDatalayer
     {
-        private WeekClassScheduleContainer _entitiesDb;
+        private WeekClassScheduleEntities _entitiesDb;
 
         public ScheduleDatalayer()
         {
-            this._entitiesDb = new WeekClassScheduleContainer();
+            this._entitiesDb = new WeekClassScheduleEntities();
         }
 
         public async Task<List<vWeeklyScheduleByClass>> AllSchedulesAsync()
@@ -23,10 +23,12 @@ namespace WeekClassSchedule.AppDatalayer
             return await _entitiesDb.vWeeklyScheduleByClass.ToListAsync();
         }
 
-        public List<vWeeklyScheduleByClass> ScheduleViewByClass(int classroomId)
+        public List<vWeeklyScheduleByClass> ScheduleViewByClass(long classroomId)
         {
-            _entitiesDb = new WeekClassScheduleContainer();
-            return _entitiesDb.vWeeklyScheduleByClass.Where(ws => ws.ClassroomId == classroomId).ToList();
+            _entitiesDb = new WeekClassScheduleEntities();
+
+            var result = _entitiesDb.vWeeklyScheduleByClass.Where(ws => ws.ClassroomId == classroomId).ToList();
+            return result;
         }
 
         public List<WeekSchedule> WeekScheduleByClass(long classroomId)

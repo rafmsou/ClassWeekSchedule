@@ -31,6 +31,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgClassSchedule = new System.Windows.Forms.DataGridView();
+            this.Aula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Segunda = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Terça = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Quarta = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Quinta = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Sexta = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dgProfessors = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,12 +54,7 @@
             this.loading = new System.Windows.Forms.PictureBox();
             this.lblScheduleSaved = new System.Windows.Forms.Label();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.Aula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Segunda = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Terça = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Quarta = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Quinta = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Sexta = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.lblClassroom = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgClassSchedule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgProfessors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loading)).BeginInit();
@@ -92,6 +93,57 @@
             this.dgClassSchedule.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgSala1_DataError);
             this.dgClassSchedule.Click += new System.EventHandler(this.dgClassSchedule_Click);
             // 
+            // Aula
+            // 
+            this.Aula.DataPropertyName = "Classnumber";
+            this.Aula.Frozen = true;
+            this.Aula.HeaderText = "Aula";
+            this.Aula.Name = "Aula";
+            this.Aula.ReadOnly = true;
+            this.Aula.Width = 40;
+            // 
+            // Segunda
+            // 
+            this.Segunda.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Segunda.DataPropertyName = "Monday";
+            this.Segunda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Segunda.Frozen = true;
+            this.Segunda.HeaderText = "Segunda";
+            this.Segunda.Name = "Segunda";
+            this.Segunda.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Terça
+            // 
+            this.Terça.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Terça.DataPropertyName = "Tuesday";
+            this.Terça.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Terça.HeaderText = "Terça";
+            this.Terça.Name = "Terça";
+            // 
+            // Quarta
+            // 
+            this.Quarta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Quarta.DataPropertyName = "Wednesday";
+            this.Quarta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Quarta.HeaderText = "Quarta";
+            this.Quarta.Name = "Quarta";
+            // 
+            // Quinta
+            // 
+            this.Quinta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Quinta.DataPropertyName = "Thursday";
+            this.Quinta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Quinta.HeaderText = "Quinta";
+            this.Quinta.Name = "Quinta";
+            // 
+            // Sexta
+            // 
+            this.Sexta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Sexta.DataPropertyName = "Friday";
+            this.Sexta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Sexta.HeaderText = "Sexta";
+            this.Sexta.Name = "Sexta";
+            // 
             // dgProfessors
             // 
             this.dgProfessors.AllowUserToAddRows = false;
@@ -119,6 +171,7 @@
             this.dgProfessors.Size = new System.Drawing.Size(403, 228);
             this.dgProfessors.TabIndex = 2;
             this.dgProfessors.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProfessors_CellContentDoubleClick);
+            this.dgProfessors.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgProfessors_CellMouseDoubleClick);
             this.dgProfessors.Click += new System.EventHandler(this.dgProfessors_Click);
             // 
             // Id
@@ -177,7 +230,7 @@
             this.lblLoadingSchedule.AutoSize = true;
             this.lblLoadingSchedule.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLoadingSchedule.ForeColor = System.Drawing.Color.Red;
-            this.lblLoadingSchedule.Location = new System.Drawing.Point(163, 325);
+            this.lblLoadingSchedule.Location = new System.Drawing.Point(267, 325);
             this.lblLoadingSchedule.Name = "lblLoadingSchedule";
             this.lblLoadingSchedule.Size = new System.Drawing.Size(199, 13);
             this.lblLoadingSchedule.TabIndex = 5;
@@ -280,62 +333,22 @@
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // Aula
+            // lblClassroom
             // 
-            this.Aula.DataPropertyName = "Classnumber";
-            this.Aula.Frozen = true;
-            this.Aula.HeaderText = "Aula";
-            this.Aula.Name = "Aula";
-            this.Aula.ReadOnly = true;
-            this.Aula.Width = 40;
-            // 
-            // Segunda
-            // 
-            this.Segunda.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Segunda.DataPropertyName = "Monday";
-            this.Segunda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Segunda.Frozen = true;
-            this.Segunda.HeaderText = "Segunda";
-            this.Segunda.Name = "Segunda";
-            this.Segunda.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Terça
-            // 
-            this.Terça.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Terça.DataPropertyName = "Tuesday";
-            this.Terça.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Terça.HeaderText = "Terça";
-            this.Terça.Name = "Terça";
-            // 
-            // Quarta
-            // 
-            this.Quarta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Quarta.DataPropertyName = "Wednesday";
-            this.Quarta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Quarta.HeaderText = "Quarta";
-            this.Quarta.Name = "Quarta";
-            // 
-            // Quinta
-            // 
-            this.Quinta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Quinta.DataPropertyName = "Thursday";
-            this.Quinta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Quinta.HeaderText = "Quinta";
-            this.Quinta.Name = "Quinta";
-            // 
-            // Sexta
-            // 
-            this.Sexta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Sexta.DataPropertyName = "Friday";
-            this.Sexta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Sexta.HeaderText = "Sexta";
-            this.Sexta.Name = "Sexta";
+            this.lblClassroom.AutoSize = true;
+            this.lblClassroom.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClassroom.Location = new System.Drawing.Point(145, 325);
+            this.lblClassroom.Name = "lblClassroom";
+            this.lblClassroom.Size = new System.Drawing.Size(33, 13);
+            this.lblClassroom.TabIndex = 15;
+            this.lblClassroom.Text = "[sala]";
             // 
             // FrmWeekClassSchedule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(877, 644);
+            this.Controls.Add(this.lblClassroom);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.lblScheduleSaved);
             this.Controls.Add(this.loading);
@@ -390,6 +403,7 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn Quarta;
         private System.Windows.Forms.DataGridViewComboBoxColumn Quinta;
         private System.Windows.Forms.DataGridViewComboBoxColumn Sexta;
+        private System.Windows.Forms.Label lblClassroom;
     }
 }
 

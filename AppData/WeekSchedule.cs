@@ -17,7 +17,7 @@ namespace WeekClassSchedule.AppData
         public long ClassroomId { get; set; }
         public long ClassNumber { get; set; }
         public long WeekDay { get; set; }
-        public long ProfessorId { get; set; }
+        public Nullable<long> ProfessorId { get; set; }
     
         public virtual Classroom Classroom { get; set; }
         public virtual Professor Professor { get; set; }
