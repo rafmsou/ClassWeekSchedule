@@ -15,7 +15,6 @@ namespace WeekClassSchedule
     public partial class FrmClassroom : Form
     {
         private ClassroomDatalayer _classroomDatalayer;
-        private List<Classroom> _classroomList;
 
         public FrmClassroom()
         {
