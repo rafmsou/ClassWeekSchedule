@@ -185,7 +185,9 @@
       <DependentUpon>WeekClassSchedule.edmx</DependentUpon>
       <LastGenOutput>WeekClassSchedule.cs</LastGenOutput>
     </None>
-    <None Include="AppDb\WeekClassSchedule.sqlite" />
+    <None Include="AppDb\WeekClassSchedule.sqlite">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\WeekSchedule.AppData.Professor.datasource">
       <SubType>Designer</SubType>

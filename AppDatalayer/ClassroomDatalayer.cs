@@ -40,15 +40,35 @@ namespace WeekClassSchedule.AppDatalayer
 
         public void Save(Classroom classroomToSave)
         {
-            _entitiesDb.Classroom.Add(classroomToSave);
-            _entitiesDb.SaveChanges();
-            _classroomList.Add(classroomToSave);
+            if (classroomToSave.Id == 0)
+            {
+                _entitiesDb.Classroom.Add(classroomToSave);
+                _entitiesDb.SaveChanges();
+
+                _classroomList.Add(classroomToSave);
+            }
+            else
+            {
+                var classroomToUpdate = _entitiesDb.Classroom.Where(c => c.Id == classroomToSave.Id).Single();
+                classroomToUpdate.Name = classroomToSave.Name;
+                classroomToUpdate.NumberOfClasses = classroomToSave.NumberOfClasses;
+                _entitiesDb.SaveChanges();
+            }
         }
 
-        public void GenerateWeekSchedule(string classroomName)
+        public void Remove(long classroomId)
         {
-            var classroom = this._classroomList.Where(c => c.Name.Equals(classroomName)).FirstOrDefault();
-            if (classroom != null)
+            var classroomToRemove =_entitiesDb.Classroom.Where(c => c.Id == classroomId).Single();
+            _entitiesDb.Classroom.Remove(classroomToRemove);
+
+            _entitiesDb.SaveChanges();
+            _classroomList.Remove(classroomToRemove);
+        }
+
+        public void GenerateWeekSchedule(long classroomId)
+        {
+            var classroom = this._classroomList.Where(c => c.Id.Equals(classroomId)).FirstOrDefault();
+            if (classroom != null && !classroom.WeekSchedule.Any())
             {
                 ClassroomClasses classes;
 
@@ -63,7 +83,7 @@ namespace WeekClassSchedule.AppDatalayer
                     for (short w = (short)DayOfWeek.Monday; w <= (short)DayOfWeek.Friday; w++)
                     {
                         weekSchedule = new WeekSchedule();
-                        weekSchedule.ClassroomId = (short)classroom.Id;
+                        weekSchedule.ClassroomId = classroom.Id;
                         weekSchedule.ClassNumber = i;
                         weekSchedule.ProfessorId = 0;
                         weekSchedule.WeekDay = w;

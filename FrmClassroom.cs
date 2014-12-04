@@ -15,6 +15,7 @@ namespace WeekClassSchedule
     public partial class FrmClassroom : Form
     {
         private ClassroomDatalayer _classroomDatalayer;
+        private long _classroomId = 0;
 
         public FrmClassroom()
         {
@@ -25,23 +26,37 @@ namespace WeekClassSchedule
         private void btnSave_Click(object sender, EventArgs e)
         {
             Classroom c = new Classroom();
+
+            c.Id = _classroomId;
             c.Name = txtName.Text;
             c.NumberOfClasses = Convert.ToInt16(txtClassNum.Text);
 
             try
             {
                 _classroomDatalayer.Save(c);
-                dgClassrooms.DataSource = null;
-                dgClassrooms.DataSource = _classroomDatalayer.ClassroomList;
+                RefreshClassroomGridView();
 
+                // clear fields and variables
                 txtName.Text = string.Empty;
                 txtClassNum.Text = string.Empty;
+                txtClassNum.ReadOnly = false;
+                lblNumberOfClassesWarning.Visible = false;
+
+                _classroomId = 0;
+
                 txtName.Focus();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void RefreshClassroomGridView()
+        {
+            dgClassrooms.DataSource = null;
+            dgClassrooms.DataSource = _classroomDatalayer.ClassroomList;
+
         }
 
         private async void FrmClassroom_Load(object sender, EventArgs e)
@@ -51,13 +66,17 @@ namespace WeekClassSchedule
 
             this.Height = this.MdiParent.Height;
             this.Width = this.MdiParent.Width;
+            dgClassrooms.AutoGenerateColumns = false;
 
             var classrooms = await _classroomDatalayer.GetClassroomListAsync();
-            btnSave.Enabled = true;
-            dgClassrooms.AutoGenerateColumns = false;
-            dgClassrooms.DataSource = classrooms;
-            _classroomDatalayer.ClassroomList = classrooms;
 
+            if (classrooms.Count() > 0)
+            {
+                dgClassrooms.DataSource = classrooms;
+                _classroomDatalayer.ClassroomList = classrooms;
+            }
+
+            btnSave.Enabled = true;
             loading.Visible = false;
         }
 
@@ -69,8 +88,9 @@ namespace WeekClassSchedule
 
             for (int i = 0; i < dgClassrooms.SelectedRows.Count; i++)
             {
-                var classroomName = dgClassrooms.SelectedRows[i].Cells[0].Value.ToString();
-                _classroomDatalayer.GenerateWeekSchedule(classroomName);
+                var classroomId = Convert.ToInt64(dgClassrooms.SelectedRows[i].Cells["ClassroomId"].Value);
+                var classroomName = dgClassrooms.SelectedRows[i].Cells["ClassroomName"].Value.ToString();
+                _classroomDatalayer.GenerateWeekSchedule(classroomId);
                 lblGeneratingSchedule.Text = lblGeneratingSchedule.Text.Replace("{class}", classroomName);
             }
 
@@ -79,17 +99,48 @@ namespace WeekClassSchedule
             loading.Visible = false;
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void dgClassrooms_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == 46)
             {
-                MessageBox.Show("Deseja excluir as salas selecionadas?", "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult result = MessageBox.Show("Deseja excluir as salas selecionadas?", "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    for (var i = 0; i < dgClassrooms.SelectedRows.Count; i++)
+                    {
+                        var classroomId = Convert.ToInt64(dgClassrooms.SelectedRows[i].Cells["ClassroomId"].Value);
+                        _classroomDatalayer.Remove(classroomId);
+                    }
+
+                    this.RefreshClassroomGridView();
+                }
             }
+        }
+
+        private void dgClassrooms_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var selectedCells = dgClassrooms.Rows[e.RowIndex].Cells;
+            _classroomId = Convert.ToInt64(selectedCells["ClassroomId"].Value);
+            txtName.Text = Convert.ToString(selectedCells["ClassroomName"].Value);
+            txtClassNum.Text = Convert.ToString(selectedCells["ClassroomNumberOfClasses"].Value);
+            
+            var classroom = _classroomDatalayer.ClassroomList.Where(c => c.Id == _classroomId).Single();
+
+            txtClassNum.ReadOnly = false;
+            lblNumberOfClassesWarning.Visible = false;
+
+            // o número de aulas não pode ser alterado se já houver programação
+            if (classroom.WeekSchedule.Any())
+            {
+                txtClassNum.ReadOnly = true;
+                lblNumberOfClassesWarning.Visible = true;
+            }
+        }
+
+        private void dgClassrooms_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show(e.Exception.Message);
         }
     }
 }

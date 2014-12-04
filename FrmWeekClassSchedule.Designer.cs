@@ -364,7 +364,7 @@
             this.Controls.Add(this.dgProfessors);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmWeekClassSchedule";
-            this.Text = "WeekClassSchedule";
+            this.Text = "Agenda";
             this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmWeekClassSchedule_Load);

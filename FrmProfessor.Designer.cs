@@ -384,7 +384,7 @@
             this.Name = "FrmProfessor";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "FrmProfessor";
+            this.Text = "Professor";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmProfessor_Load);
             this.panel1.ResumeLayout(false);

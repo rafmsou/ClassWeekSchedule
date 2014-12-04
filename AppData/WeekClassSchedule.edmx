@@ -208,7 +208,8 @@ FROM [vWeeklyScheduleByClass] AS [vWeeklyScheduleByClass]</DefiningQuery>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ClassroomClasses_0_0">
-          <End Role="Classroom" Type="Self.Classroom" Multiplicity="1" />
+          <End Role="Classroom" Type="Self.Classroom" Multiplicity="1" >
+          </End>
           <End Role="ClassroomClasses" Type="Self.ClassroomClasses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Classroom">
